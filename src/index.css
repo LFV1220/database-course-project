@@ -1,3 +1,5 @@
+@import url('https://cdn.jsdelivr.net/npm/ol@v7.1.0/ol.css');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -12,6 +14,56 @@ code {
     monospace;
 }
 
+.flex {
+  display: flex;
+}
+
+/* Container for nav */
 .container {
-  background: red;
+  background: green;
+}
+
+.app {
+  height: 100vh;
+}
+
+.main-container {
+  background: #000;
+  height: calc(100% - 56px);
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Menu */
+.menu-container {
+  background: #212224;
+  color: #e2e2e2;
+  height: 100%;
+  width: 20vw;
+  border: solid 0.5px #646464;
+  border-radius: 5px;
+  padding: 10px;
+
+}
+
+h2 {
+  font-weight: 300;
+}
+
+/* Map */
+.map-container {
+  background: #212224;
+  color: #e2e2e2;
+  height: 100%;
+  width: 80vw;
+  border: solid 0.5px #646464;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }

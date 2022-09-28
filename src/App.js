@@ -1,14 +1,14 @@
 import Header from "./components/Header";
-import Map from "./components/Map";
+import UsfMap from "./components/Map";
 import Menu from "./components/Menu";
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Header />
-      <div className='container'>
-        <Map />
+      <div className='flex main-container'>
         <Menu />
+        <UsfMap />
       </div>
     </div>
   );
