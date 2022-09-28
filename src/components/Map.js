@@ -31,7 +31,76 @@ function UsfMap() {
     {
       name: 'HMS',
       coords: [-82.409271, 28.060856]
-    }
+    },
+    {
+      name: 'CWY',
+      coords: [-82.408220, 28.061356]
+    }, 
+    {
+      name: 'SOC',
+      coords: [-82.409420, 28.061439]
+    }, 
+    {
+      name: 'ULH',
+      coords: [-82.409773, 28.060443]
+    },
+    {
+      name: 'EDU',
+      coords: [-82.410609, 28.060767]
+    },
+    {
+      name: 'BEH',
+      coords: [-82.410090, 28.061999]
+    }, 
+    {
+      name: 'MSC',
+      coords: [-82.413583, 28.063923]
+    }, 
+    {
+      name: 'ENG',
+      coords: [-82.415900, 28.059454]
+    },
+    {
+      name: 'ENB',
+      coords: [-82.415484, 28.058733]
+    },
+    {
+      name: 'MDT',
+      coords: [-82.419598, 28.068428]
+    }, 
+    {
+      name: 'MHC',
+      coords: [-82.422864, 28.068118]
+    }, 
+    {
+      name: 'JPH',
+      coords: [-82.418428, 28.059811]
+    },
+    {
+      name: 'SHR',
+      coords: [-82.422259, 28.061852]
+    },
+    {
+      name: 'PUB',
+      coords: [-82.411957, 28.068428]
+    },
+    // Resume here, names done. Need lat/ lons
+    {
+      name: 'MDT',
+      coords: [-82.419598, 28.068428]
+    }, 
+    {
+      name: 'MHC',
+      coords: [-82.422864, 28.068118]
+    }, 
+    {
+      name: 'JPH',
+      coords: [-82.418428, 28.059811]
+    },
+    {
+      name: 'SHR',
+      coords: [-82.422259, 28.061852]
+    },
   ]
   const stroke = new Stroke({ color: 'black', width: 2 });
   const fill = new Fill({ color: 'red' });
