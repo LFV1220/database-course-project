@@ -3,18 +3,21 @@ import Map from 'ol/Map';
 import OSM from 'ol/source/OSM';
 import TileLayer from 'ol/layer/Tile';
 import View from 'ol/View';
-import { fromLonLat, transform } from 'ol/proj'
+import { fromLonLat, toLonLat, transform } from 'ol/proj'
 import VectorSource from 'ol/source/Vector';
 import { Vector as VectorLayer } from 'ol/layer';
 import Point from 'ol/geom/Point';
 import Feature from 'ol/Feature';
 import {Fill, RegularShape, Stroke, Style} from 'ol/style';
+import Polyline from 'ol/format/Polyline';
+import LineString from 'ol/geom/LineString';
+import Source from 'ol/source/Source';
 
 function UsfMap() {
 
   let map
   let vectorLayer
-  let polyCoords
+  let polyCoords = [[-82.412220, 28.059588], [-82.409976, 28.058358], [-82.411957, 28.068428]]
   const buildings = [
     {
       name: 'LIB',
@@ -84,27 +87,28 @@ function UsfMap() {
       name: 'PUB',
       coords: [-82.411957, 28.068428]
     },
+    {
+      name: 'ISA',
+      coords: [-82.414108, 28.061403]
+    }, 
+    {
+      name: 'ALN',
+      coords: [-82.413240, 28.061449]
+    }, 
+    {
+      name: 'FAH',
+      coords: [-82.416686, 28.063077]
+    },
+    {
+      name: 'MRC',
+      coords: [-82.419555, 28.065334]
+    },
     // Resume here, names done. Need lat/ lons
-    {
-      name: 'MDT',
-      coords: [-82.419598, 28.068428]
-    }, 
-    {
-      name: 'MHC',
-      coords: [-82.422864, 28.068118]
-    }, 
-    {
-      name: 'JPH',
-      coords: [-82.418428, 28.059811]
-    },
-    {
-      name: 'SHR',
-      coords: [-82.422259, 28.061852]
-    },
   ]
+
+  // Styles for square shapes that will act as building markers 
   const stroke = new Stroke({ color: 'black', width: 2 });
   const fill = new Fill({ color: 'red' });
-
   const styles = {
     'square': new Style({
       image: new RegularShape({
@@ -118,10 +122,8 @@ function UsfMap() {
   }
 
   const styleKeys = [
-    'square',
+    'square'
   ];
-
-  const features = new Array(buildings.length);
 
   useEffect(() => {
     map = new Map({
@@ -137,6 +139,9 @@ function UsfMap() {
       }),
     });
 
+    // Populate an array of features where each feature is a building marker
+    const features = new Array(buildings.length);
+
     for(var i = 0; i < buildings.length; i++) {
       features[i] = new Feature(new Point(fromLonLat(buildings[i].coords)));
       features[i].setStyle(
@@ -144,23 +149,34 @@ function UsfMap() {
       );
     }
 
-    const source = new VectorSource({
-      features,
-    });
-    
+    // Add building markers to map
+    const source = new VectorSource({ features });
     vectorLayer = new VectorLayer({ source });
-
     map.addLayer(vectorLayer)
 
-    map.on('click', e => {
-      map.forEachFeatureAtPixel(e.pixel, function (feature, layer) {
-          polyCoords = [
-            feature
-            // Store coords of where the click was to do polyline
-          ]
+    // Change all coords from lon/lat to web mercader projection
+    for(let i = 0; i < polyCoords.length; i++) {
+      polyCoords[i] = fromLonLat(polyCoords[i])
+    }
+
+    // Draw lines on polyLayer
+    let polyLayer = new VectorLayer({
+      source: new VectorSource({
+        features: [new Feature({
+          geometry: new LineString(polyCoords),
+          name: 'Route'
+        })]
+      }),
+      style: new Style({
+        stroke: new Stroke({
+          color: '#000',
+          width: 3
+        })
       })
     })
-    
+
+    // Add polyLayer to map 
+    map.addLayer(polyLayer)
   }, []) 
 
   return (
