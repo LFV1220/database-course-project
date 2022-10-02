@@ -15,96 +15,34 @@ import Source from 'ol/source/Source';
 
 function UsfMap() {
 
+  const dummyInput = ['BSN', 'JPH', 'ISA', 'MRC']
+
   let map
   let vectorLayer
-  let polyCoords = [[-82.412220, 28.059588], [-82.409976, 28.058358], [-82.411957, 28.068428]]
-  const buildings = [
-    {
-      name: 'LIB',
-      coords: [-82.412220, 28.059588]
-    }, 
-    {
-      name: 'BSN',
-      coords: [-82.409976, 28.058358]
-    }, 
-    {
-      name: 'CPR',
-      coords: [-82.410845, 28.059827]
-    },
-    {
-      name: 'HMS',
-      coords: [-82.409271, 28.060856]
-    },
-    {
-      name: 'CWY',
-      coords: [-82.408220, 28.061356]
-    }, 
-    {
-      name: 'SOC',
-      coords: [-82.409420, 28.061439]
-    }, 
-    {
-      name: 'ULH',
-      coords: [-82.409773, 28.060443]
-    },
-    {
-      name: 'EDU',
-      coords: [-82.410609, 28.060767]
-    },
-    {
-      name: 'BEH',
-      coords: [-82.410090, 28.061999]
-    }, 
-    {
-      name: 'MSC',
-      coords: [-82.413583, 28.063923]
-    }, 
-    {
-      name: 'ENG',
-      coords: [-82.415900, 28.059454]
-    },
-    {
-      name: 'ENB',
-      coords: [-82.415484, 28.058733]
-    },
-    {
-      name: 'MDT',
-      coords: [-82.419598, 28.068428]
-    }, 
-    {
-      name: 'MHC',
-      coords: [-82.422864, 28.068118]
-    }, 
-    {
-      name: 'JPH',
-      coords: [-82.418428, 28.059811]
-    },
-    {
-      name: 'SHR',
-      coords: [-82.422259, 28.061852]
-    },
-    {
-      name: 'PUB',
-      coords: [-82.411957, 28.068428]
-    },
-    {
-      name: 'ISA',
-      coords: [-82.414108, 28.061403]
-    }, 
-    {
-      name: 'ALN',
-      coords: [-82.413240, 28.061449]
-    }, 
-    {
-      name: 'FAH',
-      coords: [-82.416686, 28.063077]
-    },
-    {
-      name: 'MRC',
-      coords: [-82.419555, 28.065334]
-    },
-    // Resume here, names done. Need lat/ lons
-  ]
+  let polyCoords = []
+  const buildings = {
+    LIB: [-82.412220, 28.059588], 
+    BSN: [-82.409976, 28.058358], 
+    CPR: [-82.410845, 28.059827],
+    HMS: [-82.409271, 28.060856],
+    CWY: [-82.408220, 28.061356], 
+    SOC: [-82.409420, 28.061439], 
+    ULH: [-82.409773, 28.060443],
+    EDU: [-82.410609, 28.060767],
+    BEH: [-82.410090, 28.061999], 
+    MSC: [-82.413583, 28.063923], 
+    ENG: [-82.415900, 28.059454],
+    ENB: [-82.415484, 28.058733],
+    MDT: [-82.419598, 28.068428], 
+    MHC: [-82.422864, 28.068118], 
+    JPH: [-82.418428, 28.059811],
+    SHR: [-82.422259, 28.061852],
+    PUB: [-82.411957, 28.068428],
+    ISA: [-82.414108, 28.061403], 
+    ALN: [-82.413240, 28.061449], 
+    FAH: [-82.416686, 28.063077],
+    MRC: [-82.419555, 28.065334]
+  }
 
   // Styles for square shapes that will act as building markers 
   const stroke = new Stroke({ color: 'black', width: 2 });
@@ -140,26 +78,28 @@ function UsfMap() {
     });
 
     // Populate an array of features where each feature is a building marker
-    const features = new Array(buildings.length);
+    const features = new Array(Object.keys(buildings).length);
 
-    for(var i = 0; i < buildings.length; i++) {
-      features[i] = new Feature(new Point(fromLonLat(buildings[i].coords)));
+    // Make each building a feature in feature array
+    Object.keys(buildings).forEach((key, i) => {
+      features[i] = new Feature(new Point(fromLonLat(buildings[key])));
       features[i].setStyle(
         styles[styleKeys[Math.floor(Math.random() * styleKeys.length)]]
       );
-    }
+      console.log(i)
+    })
 
-    // Add building markers to map
+    // Add building features to map as red markers
     const source = new VectorSource({ features });
     vectorLayer = new VectorLayer({ source });
     map.addLayer(vectorLayer)
 
-    // Change all coords from lon/lat to web mercader projection
-    for(let i = 0; i < polyCoords.length; i++) {
-      polyCoords[i] = fromLonLat(polyCoords[i])
-    }
+    // Draw lines from each building in the users schedule
+    dummyInput.map((code, i) => {
+      polyCoords[i] = fromLonLat(buildings[code])
+    })
 
-    // Draw lines on polyLayer
+    // Add lines to polyLayer
     let polyLayer = new VectorLayer({
       source: new VectorSource({
         features: [new Feature({
