@@ -51,6 +51,18 @@ h2 {
   font-weight: 300;
 }
 
+.menu-container .menu-buttons button {
+  background-color: #3b3b3b;
+  color: #e2e2e2;
+  border: solid 0.5px #b4b4b4;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.form {
+  color: green;
+}
+
 /* Map */
 .map-container {
   background: #212224;

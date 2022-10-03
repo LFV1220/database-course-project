@@ -15,25 +15,25 @@ function Menu() {
         (<div>
             <Form.Text>Building 1:</Form.Text>
             <Form.Group className="mb-3">
-                <Form.Control type="building" placeholder="Enter building code..." />
+                <Form.Control className="input-field" type="text" placeholder="Enter building code..." maxLength="3" />
             </Form.Group>
         </div>),
         (<div>
             <Form.Text>Building 2:</Form.Text>
             <Form.Group className="mb-3">
-                <Form.Control type="building" placeholder="Enter building code..." />
+                <Form.Control className="input-field" type="text" placeholder="Enter building code..." maxLength="3" />
             </Form.Group>
         </div>),
         (<div>
             <Form.Text>Building 3:</Form.Text>
             <Form.Group className="mb-3">
-                <Form.Control type="building" placeholder="Enter building code..." />
+                <Form.Control className="input-field" type="text" placeholder="Enter building code..." maxLength="3" />
             </Form.Group>
         </div>),
         (<div>
             <Form.Text>Building 4:</Form.Text>
             <Form.Group className="mb-3">
-                <Form.Control type="building" placeholder="Enter building code..." />
+                <Form.Control className="input-field" type="text" placeholder="Enter building code..." maxLength="3" />
             </Form.Group>
         </div>)]);
 
@@ -43,7 +43,7 @@ function Menu() {
             <div>
                 <Form.Text>Building {form.length + 1}:</Form.Text>
                 <Form.Group className="mb-3">
-                    <Form.Control type="building" placeholder="Enter building code..." />
+                    <Form.Control className="input-field" type="text" placeholder="Enter building code..." maxLength="3" />
                 </Form.Group>
             </div>
         );
@@ -85,9 +85,12 @@ function Menu() {
                     {form}
                 </Form>
 
-                <button>Save</button>
-                <button onClick={addForm}>Add</button>
-                <button onClick={removeForm}>Remove</button>
+                <div className="menu-buttons">
+                    <button>Save</button>
+                    <button onClick={addForm}>Add</button>
+                    <button onClick={removeForm}>Remove</button>
+                </div>
+
             </div>
         </div>
     );
