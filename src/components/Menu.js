@@ -7,53 +7,37 @@ import Form from 'react-bootstrap/Form';
 import { getElementError } from '@testing-library/react';
 
 function Menu() {
-    // dropdown value input
+    // dropdown value input (days of the week)
     const [value, setValue] = useState('Day');
 
     const handleValueInput = (e) => {
         setValue(e);
     }
 
-    //TODO: work on getting input on array correctly
-    let tempSaved = new Array();
-    function handleInputChange(e) {
-        // if (e.target.value.length === 3) {
-
-        // }
-
-        form.map(evt => {
-
-        }
-
-        );
-
-
-    }
-
-    // form array
+    // form array for inputs
     const [form, setForm] = useState([
         (<div>
             <Form.Text>Building 1:</Form.Text>
             <Form.Group className="mb-3">
-                <Form.Control className="input-field" key={0} onChange={handleInputChange} type="text" placeholder="Enter building code..." maxLength="3" />
+                <Form.Control className="input" type="text" placeholder="Enter building code..." maxLength="3" />
             </Form.Group>
         </div>),
         (<div>
             <Form.Text>Building 2:</Form.Text>
             <Form.Group className="mb-3">
-                <Form.Control className="input-field" key={1} onChange={handleInputChange} type="text" placeholder="Enter building code..." maxLength="3" />
+                <Form.Control className="input" type="text" placeholder="Enter building code..." maxLength="3" />
             </Form.Group>
         </div>),
         (<div>
             <Form.Text>Building 3:</Form.Text>
             <Form.Group className="mb-3">
-                <Form.Control className="input-field" key={2} type="text" placeholder="Enter building code..." maxLength="3" />
+                <Form.Control className="input" type="text" placeholder="Enter building code..." maxLength="3" />
             </Form.Group>
         </div>),
         (<div>
             <Form.Text>Building 4:</Form.Text>
             <Form.Group className="mb-3">
-                <Form.Control className="input-field" key={3} type="text" placeholder="Enter building code..." maxLength="3" />
+                <Form.Control className="input" type="text" placeholder="Enter building code..." maxLength="3" />
             </Form.Group>
         </div>)]);
 
@@ -63,7 +47,7 @@ function Menu() {
             <div>
                 <Form.Text>Building {form.length + 1}:</Form.Text>
                 <Form.Group className="mb-3">
-                    <Form.Control className="input-field" key={form.length} type="text" placeholder="Enter building code..." maxLength="3" />
+                    <Form.Control className="input" type="text" placeholder="Enter building code..." maxLength="3" />
                 </Form.Group>
             </div>
         );
@@ -80,7 +64,7 @@ function Menu() {
     }
 
     // saved buildings
-    const savedBuildings = {
+    let savedBuildings = {
         monday: [],
         tuesday: [],
         wednesday: [],
@@ -90,30 +74,54 @@ function Menu() {
         sunday: []
     };
 
-    // TODO: function to check value (with switch case) then setSaved to certain day to add form data to the certain array
-    // TODO: also fix input, where building number corresponds to tempSaved index
-    // const handleSave = () => {
-    //     switch (value) {
-    //         case "Monday":
-    //             // something like savedBuildings.{value} = tempSaved in here
-    //             return
-    //         case "Tuesday":
-    //             return
-    //         case "Wednesday":
-    //             return
-    //         case "Thursday":
-    //             return
-    //         case "Friday":
-    //             return
-    //         case "Saturday":
-    //             return
-    //         case "Sunday":
-    //             return
-    //         default:
-    //             return null;
-    //     }
+    const handleSave = () => {
+        switch (value) {
+            case "Monday":
+                savedBuildings.monday = saveBuildings();
+                console.log(savedBuildings.monday);
+                break;
+            case "Tuesday":
+                savedBuildings.tuesday = saveBuildings();
+                console.log(savedBuildings.tuesday);
+                break;
+            case "Wednesday":
+                savedBuildings.wednesday = saveBuildings();
+                console.log(savedBuildings.wednesday);
+                break;
+            case "Thursday":
+                savedBuildings.thursday = saveBuildings();
+                console.log(savedBuildings.thursday);
+                break;
+            case "Friday":
+                savedBuildings.friday = saveBuildings();
+                console.log(savedBuildings.friday);
+                break;
+            case "Saturday":
+                savedBuildings.saturday = saveBuildings();
+                console.log(savedBuildings.saturday);
+                break;
+            case "Sunday":
+                savedBuildings.sunday = saveBuildings();
+                console.log(savedBuildings.sunday);
+                break;
+            default:
+                return null;
+        }
 
-    // }
+    }
+
+    const saveBuildings = () => {
+        let tempSaved = [];
+        let inputs = document.getElementsByClassName("input");
+        
+        for(let i = 0; i < inputs.length; i++) {
+            if(inputs[i].value.length === 3) {
+                tempSaved.push(inputs[i].value);
+            }
+            
+        }
+        return tempSaved;
+    }
 
 
     return (
@@ -142,7 +150,7 @@ function Menu() {
                 </Form>
 
                 <div className="menu-buttons">
-                    <button>Save</button>
+                    <button onClick={handleSave}>Save</button>
                     <button onClick={addForm}>Add</button>
                     <button onClick={removeForm}>Remove</button>
                 </div>
