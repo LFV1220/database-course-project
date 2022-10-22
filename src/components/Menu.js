@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { ImageSourceEventType } from 'ol/source/Image';
-//import { fromPascal } from 'postgres';
-import { FormControl } from 'react-bootstrap';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
-import { getElementError } from '@testing-library/react';
+import UsfMap from './Map';
 
 function Menu() {
     // dropdown value input (days of the week)
@@ -42,7 +39,6 @@ function Menu() {
         </div>)]);
 
     const addForm = () => {
-        let length = form.length;
         let newForm = (
             <div>
                 <Form.Text>Building {form.length + 1}:</Form.Text>
@@ -78,30 +74,37 @@ function Menu() {
         switch (value) {
             case "Monday":
                 savedBuildings.monday = saveBuildings();
+                UsfMap(savedBuildings.monday);
                 console.log(savedBuildings.monday);
                 break;
             case "Tuesday":
                 savedBuildings.tuesday = saveBuildings();
+                UsfMap(savedBuildings.tuesday);
                 console.log(savedBuildings.tuesday);
                 break;
             case "Wednesday":
                 savedBuildings.wednesday = saveBuildings();
+                UsfMap(savedBuildings.wednesday);
                 console.log(savedBuildings.wednesday);
                 break;
             case "Thursday":
                 savedBuildings.thursday = saveBuildings();
+                UsfMap(savedBuildings.thursday);
                 console.log(savedBuildings.thursday);
                 break;
             case "Friday":
                 savedBuildings.friday = saveBuildings();
+                UsfMap(savedBuildings.friday);
                 console.log(savedBuildings.friday);
                 break;
             case "Saturday":
                 savedBuildings.saturday = saveBuildings();
+                UsfMap(savedBuildings.saturday);
                 console.log(savedBuildings.saturday);
                 break;
             case "Sunday":
                 savedBuildings.sunday = saveBuildings();
+                UsfMap(savedBuildings.sunday);
                 console.log(savedBuildings.sunday);
                 break;
             default:
@@ -113,12 +116,12 @@ function Menu() {
     const saveBuildings = () => {
         let tempSaved = [];
         let inputs = document.getElementsByClassName("input");
-        
-        for(let i = 0; i < inputs.length; i++) {
-            if(inputs[i].value.length === 3) {
+
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[i].value.length === 3) {
                 tempSaved.push(inputs[i].value);
             }
-            
+
         }
         return tempSaved;
     }
