@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-import { ImageSourceEventType } from 'ol/source/Image';
-//import { fromPascal } from 'postgres';
-import { FormControl } from 'react-bootstrap';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
-import { getElementError } from '@testing-library/react';
 
 function Menu() {
     // dropdown value input (days of the week)
@@ -42,7 +38,6 @@ function Menu() {
         </div>)]);
 
     const addForm = () => {
-        let length = form.length;
         let newForm = (
             <div>
                 <Form.Text>Building {form.length + 1}:</Form.Text>

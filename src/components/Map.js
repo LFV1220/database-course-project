@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import Map from 'ol/Map';
 import OSM from 'ol/source/OSM';
 import TileLayer from 'ol/layer/Tile';
 import View from 'ol/View';
-import { fromLonLat, toLonLat, transform } from 'ol/proj'
+import { fromLonLat } from 'ol/proj'
 import VectorSource from 'ol/source/Vector';
 import { Vector as VectorLayer } from 'ol/layer';
 import Point from 'ol/geom/Point';
 import Feature from 'ol/Feature';
 import {Fill, RegularShape, Stroke, Style} from 'ol/style';
-import Polyline from 'ol/format/Polyline';
 import LineString from 'ol/geom/LineString';
-import Source from 'ol/source/Source';
 
 function UsfMap() {
 
