@@ -8,7 +8,7 @@ import VectorSource from 'ol/source/Vector';
 import { Vector as VectorLayer } from 'ol/layer';
 import Point from 'ol/geom/Point';
 import Feature from 'ol/Feature';
-import {Fill, RegularShape, Stroke, Style} from 'ol/style';
+import { Fill, RegularShape, Stroke, Style } from 'ol/style';
 import LineString from 'ol/geom/LineString';
 
 function UsfMap() {
@@ -19,25 +19,25 @@ function UsfMap() {
   let vectorLayer
   let polyCoords = []
   const buildings = {
-    LIB: [-82.412220, 28.059588], 
-    BSN: [-82.409976, 28.058358], 
+    LIB: [-82.412220, 28.059588],
+    BSN: [-82.409976, 28.058358],
     CPR: [-82.410845, 28.059827],
     HMS: [-82.409271, 28.060856],
-    CWY: [-82.408220, 28.061356], 
-    SOC: [-82.409420, 28.061439], 
+    CWY: [-82.408220, 28.061356],
+    SOC: [-82.409420, 28.061439],
     ULH: [-82.409773, 28.060443],
     EDU: [-82.410609, 28.060767],
-    BEH: [-82.410090, 28.061999], 
-    MSC: [-82.413583, 28.063923], 
+    BEH: [-82.410090, 28.061999],
+    MSC: [-82.413583, 28.063923],
     ENG: [-82.415900, 28.059454],
     ENB: [-82.415484, 28.058733],
-    MDT: [-82.419598, 28.068428], 
-    MHC: [-82.422864, 28.068118], 
+    MDT: [-82.419598, 28.068428],
+    MHC: [-82.422864, 28.068118],
     JPH: [-82.418428, 28.059811],
     SHR: [-82.422259, 28.061852],
     PUB: [-82.411957, 28.068428],
-    ISA: [-82.414108, 28.061403], 
-    ALN: [-82.413240, 28.061449], 
+    ISA: [-82.414108, 28.061403],
+    ALN: [-82.413240, 28.061449],
     FAH: [-82.416686, 28.063077],
     MRC: [-82.419555, 28.065334]
   }
@@ -95,6 +95,7 @@ function UsfMap() {
     // Draw lines from each building in the users schedule
     dummyInput.map((code, i) => {
       polyCoords[i] = fromLonLat(buildings[code])
+      return '';
     })
 
     // Add lines to polyLayer
@@ -115,7 +116,7 @@ function UsfMap() {
 
     // Add polyLayer to map 
     map.addLayer(polyLayer)
-  }, []) 
+  }, [])
 
   return (
     <div className="map-container">
