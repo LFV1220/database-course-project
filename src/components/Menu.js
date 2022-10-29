@@ -1,32 +1,161 @@
+import React, { useState } from 'react';
+import { ImageSourceEventType } from 'ol/source/Image';
+//import { fromPascal } from 'postgres';
+import { FormControl } from 'react-bootstrap';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Form from 'react-bootstrap/Form';
+import { getElementError } from '@testing-library/react';
 
 function Menu() {
+    // dropdown value input (days of the week)
+    const [value, setValue] = useState('Day');
+
+    const handleValueInput = (e) => {
+        setValue(e);
+    }
+
+    // form array for inputs
+    const [form, setForm] = useState([
+        (<div>
+            <Form.Text>Building 1:</Form.Text>
+            <Form.Group className="mb-3">
+                <Form.Control className="input" type="text" placeholder="Enter building code..." maxLength="3" />
+            </Form.Group>
+        </div>),
+        (<div>
+            <Form.Text>Building 2:</Form.Text>
+            <Form.Group className="mb-3">
+                <Form.Control className="input" type="text" placeholder="Enter building code..." maxLength="3" />
+            </Form.Group>
+        </div>),
+        (<div>
+            <Form.Text>Building 3:</Form.Text>
+            <Form.Group className="mb-3">
+                <Form.Control className="input" type="text" placeholder="Enter building code..." maxLength="3" />
+            </Form.Group>
+        </div>),
+        (<div>
+            <Form.Text>Building 4:</Form.Text>
+            <Form.Group className="mb-3">
+                <Form.Control className="input" type="text" placeholder="Enter building code..." maxLength="3" />
+            </Form.Group>
+        </div>)]);
+
+    const addForm = () => {
+        let length = form.length;
+        let newForm = (
+            <div>
+                <Form.Text>Building {form.length + 1}:</Form.Text>
+                <Form.Group className="mb-3">
+                    <Form.Control className="input" type="text" placeholder="Enter building code..." maxLength="3" />
+                </Form.Group>
+            </div>
+        );
+        const newForms = [...form, newForm];
+        setForm(newForms);
+    }
+
+    const removeForm = () => {
+        const newForms = [];
+        for (let i = 0; i < form.length - 1; i++) {
+            newForms[i] = form[i];
+        }
+        setForm(newForms);
+    }
+
+    // saved buildings
+    let savedBuildings = {
+        monday: [],
+        tuesday: [],
+        wednesday: [],
+        thursday: [],
+        friday: [],
+        saturday: [],
+        sunday: []
+    };
+
+    const handleSave = () => {
+        switch (value) {
+            case "Monday":
+                savedBuildings.monday = saveBuildings();
+                console.log(savedBuildings.monday);
+                break;
+            case "Tuesday":
+                savedBuildings.tuesday = saveBuildings();
+                console.log(savedBuildings.tuesday);
+                break;
+            case "Wednesday":
+                savedBuildings.wednesday = saveBuildings();
+                console.log(savedBuildings.wednesday);
+                break;
+            case "Thursday":
+                savedBuildings.thursday = saveBuildings();
+                console.log(savedBuildings.thursday);
+                break;
+            case "Friday":
+                savedBuildings.friday = saveBuildings();
+                console.log(savedBuildings.friday);
+                break;
+            case "Saturday":
+                savedBuildings.saturday = saveBuildings();
+                console.log(savedBuildings.saturday);
+                break;
+            case "Sunday":
+                savedBuildings.sunday = saveBuildings();
+                console.log(savedBuildings.sunday);
+                break;
+            default:
+                return null;
+        }
+
+    }
+
+    const saveBuildings = () => {
+        let tempSaved = [];
+        let inputs = document.getElementsByClassName("input");
+        
+        for(let i = 0; i < inputs.length; i++) {
+            if(inputs[i].value.length === 3) {
+                tempSaved.push(inputs[i].value);
+            }
+            
+        }
+        return tempSaved;
+    }
+
+
     return (
         <div className="menu-container">
-            <h2 style={{'fontWeight': '300'}}>Classes</h2>
+            <h2 style={{ 'fontWeight': '300' }}>Class Schedule</h2>
 
-            <Dropdown className='dropdown'>
-                <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
-                    Dropdown Button
-                </Dropdown.Toggle>
+            <div>
+                <Dropdown className="dropdown" onSelect={handleValueInput}>
+                    <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
+                        {value}
+                    </Dropdown.Toggle>
 
-                <Dropdown.Menu variant="dark">
-                <Dropdown.Item href="#/action-1" active>
-                    Action
-                </Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                <Dropdown.Divider />
-                </Dropdown.Menu>
-            </Dropdown>
+                    <Dropdown.Menu variant="dark">
+                        <Dropdown.Item eventKey="Monday">Monday</Dropdown.Item>
+                        <Dropdown.Item eventKey="Tuesday">Tuesday</Dropdown.Item>
+                        <Dropdown.Item eventKey="Wednesday">Wednesday</Dropdown.Item>
+                        <Dropdown.Item eventKey="Thursday">Thursday</Dropdown.Item>
+                        <Dropdown.Item eventKey="Friday">Friday</Dropdown.Item>
+                        <Dropdown.Item eventKey="Saturday">Saturday</Dropdown.Item>
+                        <Dropdown.Item eventKey="Sunday">Sunday</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+
+                <Form className="form">
+                    {form}
+                </Form>
+
+                <div className="menu-buttons">
+                    <button onClick={handleSave}>Save</button>
+                    <button onClick={addForm}>Add</button>
+                    <button onClick={removeForm}>Remove</button>
+                </div>
+
+            </div>
         </div>
     );
 }
