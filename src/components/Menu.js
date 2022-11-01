@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
-import UsfMap from './Map';
 
-function Menu() {
+function Menu({ setBuildingsList }) {
     // dropdown value input (days of the week)
     const [value, setValue] = useState('Day');
 
@@ -74,38 +73,38 @@ function Menu() {
         switch (value) {
             case "Monday":
                 savedBuildings.monday = saveBuildings();
-                UsfMap(savedBuildings.monday);
                 console.log(savedBuildings.monday);
+                setBuildingsList(savedBuildings.monday);
                 break;
             case "Tuesday":
                 savedBuildings.tuesday = saveBuildings();
-                UsfMap(savedBuildings.tuesday);
                 console.log(savedBuildings.tuesday);
+                setBuildingsList(savedBuildings.tuesday);
                 break;
             case "Wednesday":
                 savedBuildings.wednesday = saveBuildings();
-                UsfMap(savedBuildings.wednesday);
                 console.log(savedBuildings.wednesday);
+                setBuildingsList(savedBuildings.wednesday);
                 break;
             case "Thursday":
                 savedBuildings.thursday = saveBuildings();
-                UsfMap(savedBuildings.thursday);
                 console.log(savedBuildings.thursday);
+                setBuildingsList(savedBuildings.thursday);
                 break;
             case "Friday":
                 savedBuildings.friday = saveBuildings();
-                UsfMap(savedBuildings.friday);
                 console.log(savedBuildings.friday);
+                setBuildingsList(savedBuildings.friday);
                 break;
             case "Saturday":
                 savedBuildings.saturday = saveBuildings();
-                UsfMap(savedBuildings.saturday);
                 console.log(savedBuildings.saturday);
+                setBuildingsList(savedBuildings.saturday);
                 break;
             case "Sunday":
                 savedBuildings.sunday = saveBuildings();
-                UsfMap(savedBuildings.sunday);
                 console.log(savedBuildings.sunday);
+                setBuildingsList(savedBuildings.sunday);
                 break;
             default:
                 return null;

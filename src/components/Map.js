@@ -13,7 +13,7 @@ import Polyline from 'ol/format/Polyline';
 import LineString from 'ol/geom/LineString';
 import Source from 'ol/source/Source';
 
-function UsfMap(savedBuildings) {
+function UsfMap({ buildingsList }) {
 
   const dummyInput = ['BSN', 'JPH', 'ISA', 'MRC']
 
@@ -76,56 +76,53 @@ function UsfMap(savedBuildings) {
         zoom: 16,
       }),
     });
-  }, [])
 
-  // TODO: if-else statements to check buildings array size
-  // TODO: fix this (not working)
-  if (savedBuildings.length > 1) {
 
-    useEffect(() => {
-      // Populate an array of features where each feature is a building marker
-      const features = new Array(Object.keys(buildings).length);
+    // TODO: if-else statements to check buildings array size
+    // TODO: fix this (not working)
 
-      // Make each building a feature in feature array
-      Object.keys(buildings).forEach((key, i) => {
-        features[i] = new Feature(new Point(fromLonLat(buildings[key])));
-        features[i].setStyle(
-          styles[styleKeys[Math.floor(Math.random() * styleKeys.length)]]
-        );
-        console.log(i)
-      })
 
-      // Add building features to map as red markers
-      const source = new VectorSource({ features });
-      vectorLayer = new VectorLayer({ source });
-      map.addLayer(vectorLayer)
+    // Populate an array of features where each feature is a building marker
+    const features = new Array(Object.keys(buildings).length);
 
-      // Draw lines from each building in the users schedule
-      dummyInput.map((code, i) => {
-        polyCoords[i] = fromLonLat(buildings[code])
-      })
+    // Make each building a feature in feature array
+    Object.keys(buildings).forEach((key, i) => {
+      features[i] = new Feature(new Point(fromLonLat(buildings[key])));
+      features[i].setStyle(
+        styles[styleKeys[Math.floor(Math.random() * styleKeys.length)]]
+      );
+      console.log(i)
+    })
 
-      // Add lines to polyLayer
-      let polyLayer = new VectorLayer({
-        source: new VectorSource({
-          features: [new Feature({
-            geometry: new LineString(polyCoords),
-            name: 'Route'
-          })]
-        }),
-        style: new Style({
-          stroke: new Stroke({
-            color: '#000',
-            width: 3
-          })
+    // Add building features to map as red markers
+    const source = new VectorSource({ features });
+    vectorLayer = new VectorLayer({ source });
+    map.addLayer(vectorLayer)
+
+    // Draw lines from each building in the users schedule
+    buildingsList.map((code, i) => {
+      polyCoords[i] = fromLonLat(buildings[code])
+    })
+
+    // Add lines to polyLayer
+    let polyLayer = new VectorLayer({
+      source: new VectorSource({
+        features: [new Feature({
+          geometry: new LineString(polyCoords),
+          name: 'Route'
+        })]
+      }),
+      style: new Style({
+        stroke: new Stroke({
+          color: '#000',
+          width: 3
         })
       })
+    })
 
-      // Add polyLayer to map 
-      map.addLayer(polyLayer)
-    }, [])
-  }
-
+    // Add polyLayer to map 
+    map.addLayer(polyLayer)
+  }, []);
 
 
   return (
