@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
-import { ImageSourceEventType } from 'ol/source/Image';
-//import { fromPascal } from 'postgres';
-import { FormControl } from 'react-bootstrap';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
-import { getElementError } from '@testing-library/react';
 
-function Menu() {
+function Menu({ setBuildingsList }) {
     // dropdown value input (days of the week)
     const [value, setValue] = useState('Day');
 
@@ -42,7 +38,6 @@ function Menu() {
         </div>)]);
 
     const addForm = () => {
-        let length = form.length;
         let newForm = (
             <div>
                 <Form.Text>Building {form.length + 1}:</Form.Text>
@@ -79,30 +74,37 @@ function Menu() {
             case "Monday":
                 savedBuildings.monday = saveBuildings();
                 console.log(savedBuildings.monday);
+                setBuildingsList(savedBuildings.monday);
                 break;
             case "Tuesday":
                 savedBuildings.tuesday = saveBuildings();
                 console.log(savedBuildings.tuesday);
+                setBuildingsList(savedBuildings.tuesday);
                 break;
             case "Wednesday":
                 savedBuildings.wednesday = saveBuildings();
                 console.log(savedBuildings.wednesday);
+                setBuildingsList(savedBuildings.wednesday);
                 break;
             case "Thursday":
                 savedBuildings.thursday = saveBuildings();
                 console.log(savedBuildings.thursday);
+                setBuildingsList(savedBuildings.thursday);
                 break;
             case "Friday":
                 savedBuildings.friday = saveBuildings();
                 console.log(savedBuildings.friday);
+                setBuildingsList(savedBuildings.friday);
                 break;
             case "Saturday":
                 savedBuildings.saturday = saveBuildings();
                 console.log(savedBuildings.saturday);
+                setBuildingsList(savedBuildings.saturday);
                 break;
             case "Sunday":
                 savedBuildings.sunday = saveBuildings();
                 console.log(savedBuildings.sunday);
+                setBuildingsList(savedBuildings.sunday);
                 break;
             default:
                 return null;
@@ -113,12 +115,12 @@ function Menu() {
     const saveBuildings = () => {
         let tempSaved = [];
         let inputs = document.getElementsByClassName("input");
-        
-        for(let i = 0; i < inputs.length; i++) {
-            if(inputs[i].value.length === 3) {
+
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[i].value.length === 3) {
                 tempSaved.push(inputs[i].value);
             }
-            
+
         }
         return tempSaved;
     }
