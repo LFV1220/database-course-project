@@ -91,7 +91,6 @@ function UsfMap({ buildingsList }) {
       features[i].setStyle(
         styles[styleKeys[Math.floor(Math.random() * styleKeys.length)]]
       );
-      console.log(i)
     })
 
     // Add building features to map as red markers

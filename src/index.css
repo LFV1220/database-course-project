@@ -7,6 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  list-style-type: none;
 }
 
 code {
@@ -79,4 +80,19 @@ h2 {
   height: 100%;
   overflow: hidden;
 
+}
+
+/* Form */
+
+.dropdown {
+  width: 30%;
+}
+
+.menu-buttons {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-button {
+  width: 30%;
 }
