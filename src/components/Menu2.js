@@ -2,27 +2,27 @@ import { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 
-const Menu2 = ({ setBuildingsList }) => {
+const  Menu2 = ({ setBuildingsList }) => {
     const [value, setValue] = useState('Day');
-    const [formCount, setFormCount] = useState([1, 2, 3, 4])
+    const [formCount, setFormCount] = useState(['', '', '', '']);
 
-    const formInput0 = '';
+    const handleValueInput = (e) => setValue(e);
 
-    const handleValueInput = (e) => {
-        setValue(e);
-    }
+    const handleSave = () => setBuildingsList([...formCount]);
 
-    const handleSave = () => {
-        console.log(formInput0)
-        setBuildingsList([]);
-    }
+    const addForm = () => setFormCount(formCount => [...formCount, '']);
 
-    const addForm = () => {
-        setFormCount(formCount => [...formCount, formCount[formCount.length - 1] + 1]);
-    }
+    const removeForm = () => setFormCount(formCount => formCount.slice(0, -1));
 
-    const removeForm = () => {
-        setFormCount(formCount => formCount.slice(0, -1));
+    const onInputChange = (e, id) => {
+        const updatedInputs = formCount.map((input, i) => {
+            if(i === id)
+                return input = e.target.value;
+            else    
+                return input;
+        })
+
+        setFormCount(updatedInputs);
     }
 
     return (
@@ -47,16 +47,14 @@ const Menu2 = ({ setBuildingsList }) => {
                 </Dropdown>
 
                 <Form className="form">
-                    { formCount.map((form, i) => {
-                        return (
-                            <li key={ i }>
-                                <Form.Text>Building 4:</Form.Text>
-                                <Form.Group className="mb-3"  controlId="formInput0">
-                                    <Form.Control className="input" type="text" placeholder="Enter building code..." maxLength="3"  />
-                                </Form.Group>
-                            </li>
-                        )
-                    }) }
+                    { formCount.map((form, i) => 
+                        <li key={ i }>
+                            <Form.Text>Building { i + 1 }:</Form.Text>
+                            <Form.Group className="mb-3">
+                                <Form.Control className="input" onChange={e => onInputChange(e, i)} type="text" placeholder="Enter building code..." maxLength="3"  />
+                            </Form.Group>
+                        </li>
+                    ) }
                 </Form>
 
                 <div className="flex menu-buttons">

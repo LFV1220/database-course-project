@@ -64,6 +64,10 @@ function UsfMap({ buildingsList }) {
   ];
 
   useEffect(() => {
+
+    console.log(buildingsList)
+    console.log(dummyInput)
+
     map = new Map({
       layers: [
         new TileLayer({
@@ -99,9 +103,7 @@ function UsfMap({ buildingsList }) {
     map.addLayer(vectorLayer)
 
     // Draw lines from each building in the users schedule
-    buildingsList.map((code, i) => {
-      polyCoords[i] = fromLonLat(buildings[code])
-    })
+    buildingsList.map((code, i) => polyCoords[i] = fromLonLat(buildings[code]))
 
     // Add lines to polyLayer
     let polyLayer = new VectorLayer({
@@ -119,9 +121,13 @@ function UsfMap({ buildingsList }) {
       })
     })
 
+    console.log(map.getLayers())
+
     // Add polyLayer to map 
     map.addLayer(polyLayer)
-  }, []);
+
+    console.log(map.getLayers())
+  }, [buildingsList]);
 
 
   return (
