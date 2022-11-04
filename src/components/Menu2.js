@@ -29,7 +29,7 @@ const Menu2 = ({ setBuildingsList }) => {
         <div className="menu-container">
             <h2>Class Schedule</h2>
 
-            <div>
+            <div> 
                 <Dropdown className="dropdown" onSelect={handleValueInput}>
                     <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
                         { value }
