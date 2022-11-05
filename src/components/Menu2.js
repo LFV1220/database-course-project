@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 
 const  Menu2 = ({ setBuildingsList }) => {
     const [value, setValue] = useState('Day');
-    const [formCount, setFormCount] = useState(['', '', '', '']);
+    const [formCount, setFormCount] = useState(['', '']);
 
     const handleValueInput = (e) => setValue(e);
 

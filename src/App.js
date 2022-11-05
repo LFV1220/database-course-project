@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Header from "./components/Header";
 import UsfMap from "./components/Map";
 // import Menu from "./components/Menu";

@@ -1,25 +1,23 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Map from 'ol/Map';
 import OSM from 'ol/source/OSM';
 import TileLayer from 'ol/layer/Tile';
 import View from 'ol/View';
-import { fromLonLat, toLonLat, transform } from 'ol/proj'
+import { fromLonLat } from 'ol/proj'
 import VectorSource from 'ol/source/Vector';
 import { Vector as VectorLayer } from 'ol/layer';
 import Point from 'ol/geom/Point';
 import Feature from 'ol/Feature';
 import { Fill, RegularShape, Stroke, Style } from 'ol/style';
-import Polyline from 'ol/format/Polyline';
 import LineString from 'ol/geom/LineString';
-import Source from 'ol/source/Source';
 
 function UsfMap({ buildingsList }) {
 
   const dummyInput = ['BSN', 'JPH', 'ISA', 'MRC']
 
-  let map
-  let vectorLayer
-  let polyCoords = []
+  const mapRef = useRef();
+  let vectorLayer;
+  let polyCoords = [];
   const buildings = {
     LIB: [-82.412220, 28.059588],
     BSN: [-82.409976, 28.058358],
@@ -42,7 +40,7 @@ function UsfMap({ buildingsList }) {
     ALN: [-82.413240, 28.061449],
     FAH: [-82.416686, 28.063077],
     MRC: [-82.419555, 28.065334]
-  }
+  };
 
   // Styles for square shapes that will act as building markers 
   const stroke = new Stroke({ color: 'black', width: 2 });
@@ -57,18 +55,14 @@ function UsfMap({ buildingsList }) {
         angle: Math.PI / 4,
       }),
     })
-  }
+  };
 
   const styleKeys = [
     'square'
   ];
 
   useEffect(() => {
-
-    console.log(buildingsList)
-    console.log(dummyInput)
-
-    map = new Map({
+    mapRef.current = new Map({
       layers: [
         new TileLayer({
           source: new OSM(),
@@ -100,10 +94,10 @@ function UsfMap({ buildingsList }) {
     // Add building features to map as red markers
     const source = new VectorSource({ features });
     vectorLayer = new VectorLayer({ source });
-    map.addLayer(vectorLayer)
+    mapRef.current.addLayer(vectorLayer);
 
     // Draw lines from each building in the users schedule
-    buildingsList.map((code, i) => polyCoords[i] = fromLonLat(buildings[code]))
+    buildingsList.map((code, i) => polyCoords[i] = fromLonLat(buildings[code]));
 
     // Add lines to polyLayer
     let polyLayer = new VectorLayer({
@@ -119,20 +113,17 @@ function UsfMap({ buildingsList }) {
           width: 3
         })
       })
-    })
-
-    console.log(map.getLayers())
+    });
 
     // Add polyLayer to map 
-    map.addLayer(polyLayer)
+    mapRef.current.addLayer(polyLayer);
 
-    console.log(map.getLayers())
   }, [buildingsList]);
 
 
   return (
     <div className="map-container">
-      <div className='map' id='map'></div>
+      <div ref={mapRef} className='map' id='map'></div>
     </div>
   );
 }
