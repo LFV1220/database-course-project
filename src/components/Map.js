@@ -140,19 +140,19 @@ function UsfMap({ buildingsList }) {
           new VectorSource({
             features: [new Feature({
               geometry: new LineString(polyCoords)
-            })]
-          }),
-          style: new Style({
-            stroke: new Stroke({
-              color: '#000',
-              width: 3
-            })
-          }))
+            })],
+            style: new Style({
+              stroke: new Stroke({
+                color: '#000',
+                width: 3
+              })
+          })
+        }))
       }
 
       // Add polyLayer to map 
-      if(map)
-        map.addLayer(polyLayer)
+      // if(map)
+      //   map.addLayer(polyLayer)
     }
   }, [buildingsList, buildings, map, polyLayer])
 
