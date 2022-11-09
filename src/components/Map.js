@@ -45,15 +45,14 @@ function UsfMap({ buildingsList }) {
     }
   }, []);
   
-  const dummyInput = ['BSN', 'JPH', 'ISA', 'MRC'];
-
+  
   // To initialize map
   useEffect(() => {
-
+    
     const initPolyLayer = new VectorLayer({
       source: new VectorSource()
     });
-
+    
     // Styles for square shapes that will act as building markers 
     const stroke = new Stroke({ color: 'black', width: 2 });
     const fill = new Fill({ color: 'red' });
@@ -89,7 +88,6 @@ function UsfMap({ buildingsList }) {
       const source = new VectorSource({ features });
       const vectorLayer = new VectorLayer({ source });
       
-      // mapRef.current.addLayer(vectorLayer);
       const initMap = new Map({
         layers: [
           new TileLayer({
@@ -104,57 +102,66 @@ function UsfMap({ buildingsList }) {
           zoom: 16,
         }),
       });
-
+      
       setMap(initMap);
       setPolyLayer(initPolyLayer);
-  }, [buildings]);
-
-  // Used to add lines to map when props change 
-  useEffect(() => {
-    console.log(buildingsList)
-    let polyCoords = [];
+    }, [buildings]);
+    
+    // Used to add lines to map when props change 
+    useEffect(() => {
+      const dummyInput = ['BSN', 'JPH', 'ISA', 'MRC'];
+      console.log(buildingsList)
+      let polyCoords = [];
       
-    // Draw lines from each building in the users schedule as long as buildingsList is defined
-    if(buildingsList) {
-      buildingsList.map((code, i) => polyCoords[i] = fromLonLat(buildings[code]));
+      // Draw lines from each building in the users schedule as long as buildingsList is defined
+      if(buildingsList.length) 
+        dummyInput.map((code, i) => polyCoords[i] = fromLonLat(buildings[code]));
+
+      console.log(polyCoords)
     
       // Add lines to polyLayer
-      // const polyLayer = new VectorLayer({
-      //   source: new VectorSource({
-      //     features: [new Feature({
-      //       geometry: new LineString(polyCoords),
-      //   name: 'Route'
-      //   })]
-      // }),
-      // style: new Style({
-      //   stroke: new Stroke({
-      //     color: '#000',
-      //     width: 3
-      //   })
-      // })});
+      const polyLayer = new VectorLayer({
+        source: new VectorSource({
+          features: [new Feature({
+            geometry: new LineString(polyCoords),
+        name: 'Route'
+        })]
+      }),
+      style: new Style({
+        stroke: new Stroke({
+          color: '#000',
+          width: 3
+        })
+      })});
 
-
-      // Maybe missing a paren/curly
-      if(polyLayer) {
-        polyLayer.setSource(
-          new VectorSource({
-            features: [new Feature({
-              geometry: new LineString(polyCoords)
-            })],
-            style: new Style({
-              stroke: new Stroke({
-                color: '#000',
-                width: 3
-              })
-          })
-        }))
-      }
+      // if(polyLayer) {
+      //   polyLayer.setSource(
+      //     new VectorSource({
+      //       features: [new Feature({
+      //         geometry: new LineString(polyCoords),
+      //         name: 'route'
+      //       })],
+      //       style: new Style({
+      //         stroke: new Stroke({
+      //           color: '#000',
+      //           width: 3
+      //         })
+      //     })
+      //   }));
+      // };
 
       // Add polyLayer to map 
       // if(map)
       //   map.addLayer(polyLayer)
-    }
-  }, [buildingsList, buildings, map, polyLayer])
+
+      // if(map) {
+      //   map.getView().fit(polyLayer.getSource().getExtent(), {
+      //     padding: [100,100,100,100]
+      //   })
+      //   console.log('adding polylayer')
+      // };
+      // console.log(map.getLayers());
+    }, [buildingsList, buildings, map, polyLayer]);
 
   return (
     <div className="map-container">
