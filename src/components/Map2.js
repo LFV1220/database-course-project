@@ -161,27 +161,27 @@ export default function Map2({ buildingsList }) {
         </RLayerVector>
 
 				{/* Building codes */}
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'LIB' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['LIB']))} properties='LIB' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'LIB' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['LIB']))} properties='LIB' />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'BSN' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['BSN']))} />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'BSN' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['BSN']))} />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'CPR' }>
  							<RFill color='white' />
@@ -191,7 +191,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['CPR']))} />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'HMS' }>
  							<RFill color='white' />
@@ -201,7 +201,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['HMS']))} />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'CWY' }>
  							<RFill color='white' />
@@ -211,7 +211,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['CWY']))} />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'SOC' }>
  							<RFill color='white' />
@@ -220,7 +220,7 @@ export default function Map2({ buildingsList }) {
  					</RStyle>
  					<RFeature geometry={new Point(fromLonLat(buildings['SOC']))} properties='SOC' />
         </RLayerVector>
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'ULH' }>
  							<RFill color='white' />
@@ -230,7 +230,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['ULH']))} properties='ULH' />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'EDU' }>
  							<RFill color='white' />
@@ -240,7 +240,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['EDU']))} properties='EDU' />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'BEH' }>
  							<RFill color='white' />
@@ -250,7 +250,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['BEH']))} properties='BEH' />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'MSC' }>
  							<RFill color='white' />
@@ -260,7 +260,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['MSC']))} properties='MSC' />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'ENG' }>
  							<RFill color='white' />
@@ -270,7 +270,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['ENG']))} properties='ENG' />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'ENB' }>
  							<RFill color='white' />
@@ -280,7 +280,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['ENB']))} properties='ENB' />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'MDT' }>
  							<RFill color='white' />
@@ -290,7 +290,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['MDT']))} properties='MDT' />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'MHC' }>
  							<RFill color='white' />
@@ -300,7 +300,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['MHC']))} properties='MHC' />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'JPH' }>
  							<RFill color='white' />
@@ -310,7 +310,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['JPH']))} properties='JPH' />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'SHR' }>
  							<RFill color='white' />
@@ -320,7 +320,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['SHR']))} properties='SHR' />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'PUB' }>
  							<RFill color='white' />
@@ -330,7 +330,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['PUB']))} properties='PUB' />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'ISA' }>
  							<RFill color='white' />
@@ -340,7 +340,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['ISA']))} properties='ISA' />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'ALN' }>
  							<RFill color='white' />
@@ -350,7 +350,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['ALN']))} properties='ALN' />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'FAH' }>
  							<RFill color='white' />
@@ -360,7 +360,7 @@ export default function Map2({ buildingsList }) {
  					<RFeature geometry={new Point(fromLonLat(buildings['FAH']))} properties='FAH' />
         </RLayerVector>
 
-				<RLayerVector>
+		<RLayerVector>
  					<RStyle>
  						<RText text={ 'MRC' }>
  							<RFill color='white' />
