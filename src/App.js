@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Header from "./components/Header";
 import UsfMap from "./components/Map";
 // import Menu from "./components/Menu";
@@ -12,8 +12,8 @@ function App() {
       <Header />
       <div className='flex main-container'>
         {/* <Menu setBuildingsList={ setBuildingsList } /> */}
-        <Menu2 setBuildingsList={ setBuildingsList } />
-        <UsfMap buildingsList={ buildingsList } />
+        <Menu2 setBuildingsList={setBuildingsList} />
+        <UsfMap buildingsList={buildingsList} />
       </div>
     </div>
   );

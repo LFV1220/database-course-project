@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 
-const  Menu2 = ({ setBuildingsList }) => {
+const Menu2 = ({ setBuildingsList }) => {
     const [value, setValue] = useState('Day');
     const [formCount, setFormCount] = useState(['', '']);
 
@@ -16,9 +16,9 @@ const  Menu2 = ({ setBuildingsList }) => {
 
     const onInputChange = (e, id) => {
         const updatedInputs = formCount.map((input, i) => {
-            if(i === id)
+            if (i === id)
                 return input = e.target.value;
-            else    
+            else
                 return input;
         })
 
@@ -29,10 +29,10 @@ const  Menu2 = ({ setBuildingsList }) => {
         <div className="menu-container">
             <h2>Class Schedule</h2>
 
-            <div> 
+            <div>
                 <Dropdown className="dropdown" onSelect={handleValueInput}>
                     <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
-                        { value }
+                        {value}
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu variant="dark">
@@ -47,20 +47,20 @@ const  Menu2 = ({ setBuildingsList }) => {
                 </Dropdown>
 
                 <Form className="form">
-                    { formCount.map((form, i) => 
-                        <li key={ i }>
-                            <Form.Text>Building { i + 1 }:</Form.Text>
+                    {formCount.map((form, i) =>
+                        <li key={i}>
+                            <Form.Text>Building {i + 1}:</Form.Text>
                             <Form.Group className="mb-3">
-                                <Form.Control className="input" onChange={e => onInputChange(e, i)} type="text" placeholder="Enter building code..." maxLength="3"  />
+                                <Form.Control className="input" onChange={e => onInputChange(e, i)} type="text" placeholder="Enter building code..." maxLength="3" />
                             </Form.Group>
                         </li>
-                    ) }
+                    )}
                 </Form>
 
                 <div className="flex menu-buttons">
-                    <button className='form-button' onClick={() => handleSave() }>Save</button>
-                    <button className='form-button' onClick={() => addForm() }>Add</button>
-                    <button className='form-button' onClick={() => removeForm() }>Remove</button>
+                    <button className='form-button' onClick={() => handleSave()}>Save</button>
+                    <button className='form-button' onClick={() => addForm()}>Add</button>
+                    <button className='form-button' onClick={() => removeForm()}>Remove</button>
                 </div>
 
             </div>
