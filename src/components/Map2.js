@@ -131,243 +131,243 @@ export default function Map2({ buildingsList }) {
             </RStyle>
           </RFeature>
         </RLayerVector>
-				<RLayerVector>
- 					<RStyle>
- 						<RCircle radius={15}>
- 							<RFill color='black' />
- 						</RCircle>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['LIB']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['BSN']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['CPR']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['HMS']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['CWY']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['SOC']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['ULH']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['EDU']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['BEH']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['MSC']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['ENG']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['ENB']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['MDT']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['MHC']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['JPH']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['SHR']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['PUB']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['ISA']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['ALN']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['FAH']))} />
- 					<RFeature geometry={new Point(fromLonLat(buildings['MRC']))} />
+		<RLayerVector>
+			<RStyle>
+				<RCircle radius={15}>
+					<RFill color='black' />
+				</RCircle>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['LIB']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['BSN']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['CPR']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['HMS']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['CWY']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['SOC']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['ULH']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['EDU']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['BEH']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['MSC']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['ENG']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['ENB']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['MDT']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['MHC']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['JPH']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['SHR']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['PUB']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['ISA']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['ALN']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['FAH']))} />
+			<RFeature geometry={new Point(fromLonLat(buildings['MRC']))} />
         </RLayerVector>
 
 				{/* Building codes */}
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'LIB' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['LIB']))} properties='LIB' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'LIB' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['LIB']))} properties='LIB' />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'BSN' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['BSN']))} />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'BSN' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['BSN']))} />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'CPR' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['CPR']))} />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'CPR' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['CPR']))} />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'HMS' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['HMS']))} />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'HMS' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['HMS']))} />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'CWY' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['CWY']))} />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'CWY' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['CWY']))} />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'SOC' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['SOC']))} properties='SOC' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'SOC' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['SOC']))} properties='SOC' />
         </RLayerVector>
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'ULH' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['ULH']))} properties='ULH' />
-        </RLayerVector>
-
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'EDU' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['EDU']))} properties='EDU' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'ULH' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['ULH']))} properties='ULH' />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'BEH' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['BEH']))} properties='BEH' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'EDU' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['EDU']))} properties='EDU' />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'MSC' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['MSC']))} properties='MSC' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'BEH' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['BEH']))} properties='BEH' />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'ENG' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['ENG']))} properties='ENG' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'MSC' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['MSC']))} properties='MSC' />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'ENB' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['ENB']))} properties='ENB' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'ENG' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['ENG']))} properties='ENG' />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'MDT' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['MDT']))} properties='MDT' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'ENB' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['ENB']))} properties='ENB' />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'MHC' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['MHC']))} properties='MHC' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'MDT' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['MDT']))} properties='MDT' />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'JPH' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['JPH']))} properties='JPH' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'MHC' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['MHC']))} properties='MHC' />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'SHR' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['SHR']))} properties='SHR' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'JPH' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['JPH']))} properties='JPH' />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'PUB' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['PUB']))} properties='PUB' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'SHR' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['SHR']))} properties='SHR' />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'ISA' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['ISA']))} properties='ISA' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'PUB' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['PUB']))} properties='PUB' />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'ALN' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['ALN']))} properties='ALN' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'ISA' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['ISA']))} properties='ISA' />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'FAH' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['FAH']))} properties='FAH' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'ALN' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['ALN']))} properties='ALN' />
         </RLayerVector>
 
-				<RLayerVector>
- 					<RStyle>
- 						<RText text={ 'MRC' }>
- 							<RFill color='white' />
-							<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
- 						</RText>
- 					</RStyle>
- 					<RFeature geometry={new Point(fromLonLat(buildings['MRC']))} properties='MRC' />
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'FAH' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['FAH']))} properties='FAH' />
+        </RLayerVector>
+
+		<RLayerVector>
+			<RStyle>
+				<RText text={ 'MRC' }>
+					<RFill color='white' />
+					<RStroke color="rgba(0, 0, 0, 0.6)" width={6} />
+				</RText>
+			</RStyle>
+			<RFeature geometry={new Point(fromLonLat(buildings['MRC']))} properties='MRC' />
         </RLayerVector>
       </RMap>
     </>
