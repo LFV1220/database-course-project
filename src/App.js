@@ -1,27 +1,31 @@
 import React, { useState } from 'react';
 import Header from "./components/Header";
-// import UsfMap from "./components/Map";
-import UsfMap2 from "./components/Map2";
-// import Menu from "./components/Menu";
-import Menu2 from "./components/Menu2";
-import Login from "./components/Login"
+import HomePage from './components/HomePage';
+import Login from "./components/Login";
+import Signup from './components/Signup';
+import {
+  BrowserRouter as Router,
+  Routes, 
+  Route
+} from 'react-router-dom';
 
 function App() {
-  const [buildingsList, setBuildingsList] = useState([]);
-
   return (
-    // <div className="app">
-    //   <Header />
-    //   <div className='flex main-container'>
-    //     {/* <Menu setBuildingsList={ setBuildingsList } /> */}
-    //     <Menu2 setBuildingsList={ setBuildingsList } />
-    //     {/* <UsfMap buildingsList={ buildingsList } /> */}
-    //     <UsfMap2 buildingsList={ buildingsList } />
-    //   </div>
-    // </div>
-    <div className="app">
-      <Login />
-    </div>
+    <Router>
+
+      <Header />
+      <Routes>
+        <Route exact path='/' element={ <HomePage /> } />
+
+        <Route path='/Login' element={ <Login /> } />
+
+        <Route path='/Signup' element={ <Signup /> } />
+        {/* <Route path='/'><HomePage /></Route>
+        <Route path='/Login'><Login /></Route>
+        <Route path='/Signup'><Signup /></Route> */}
+
+      </Routes>
+    </Router>
   );
 }
 

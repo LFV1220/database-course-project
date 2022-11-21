@@ -1,10 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Form';
 
 const Login = () => {
-
-
     return (
         <div className='flex login-container-wrapper'>
             <div className='flex login-container'>
@@ -22,9 +20,12 @@ const Login = () => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Password" />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
+                    <div className='flex submit-container'>
+                        <Button variant="primary" type="submit">
+                            Submit
+                        </Button>
+                    </div>
+                    <a>Don't have an account? Sign up here</a>
                 </Form>
             </div>
         </div>

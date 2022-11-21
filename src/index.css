@@ -35,7 +35,7 @@ code {
 .menu-container {
   background: #212224;
   color: #e2e2e2;
-  height: 100%;
+  height: calc(100vh - 76px);
   width: 20vw;
   border: solid 0.5px #646464;
   border-radius: 5px;
@@ -71,8 +71,8 @@ h2 {
 }
 
 .map {
-  width: 100%;
-  height: 100%;
+  width: calc(80vw);
+  height: calc(100vh - 76px);
   overflow: hidden;
   border-radius: 5px;
 }
@@ -80,6 +80,10 @@ h2 {
 .ol-layer {
   z-index: 999999999999999999;
   visibility: visible;
+}
+
+.ol-attribution {
+  visibility: hidden;
 }
 
 /* Class Input */
@@ -113,4 +117,14 @@ h2 {
   height: 30vw;
   border: solid 0.5px #b4b4b4;
   border-radius: 5px;
+  padding: 10px;
+}
+
+.submit-container {
+  justify-content: center;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 5px;
+  background: #e2e2e2;
+  color: #000;
 }
