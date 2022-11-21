@@ -82,7 +82,7 @@ h2 {
   visibility: visible;
 }
 
-/* Form */
+/* Class Input */
 .dropdown {
   margin: 10px 0;
 }
@@ -94,4 +94,23 @@ h2 {
 
 .form-button {
   width: 30%;
+}
+
+/* Login */
+.login-container-wrapper {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #212224;
+  color: #e2e2e2;
+}
+
+.login-container {
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  width: 20vw;
+  height: 30vw;
+  border: solid 0.5px #b4b4b4;
+  border-radius: 5px;
 }
