@@ -9,6 +9,7 @@
     "bootstrap": "^5.2.1",
     "eslint-plugin-react-hooks": "^5.0.0-next-4bd245e9e-20221104",
     "firebase": "^9.14.0",
+    "mdb-react-ui-kit": "^5.0.0",
     "node-postgres": "^0.6.2",
     "ol": "^7.1.0",
     "react": "^18.2.0",

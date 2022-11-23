@@ -5,7 +5,7 @@ import Login from "./components/Login";
 import Signup from './components/Signup';
 import {
   BrowserRouter as Router,
-  Routes, 
+  Routes,
   Route
 } from 'react-router-dom';
 
@@ -15,11 +15,11 @@ function App() {
 
       <Header />
       <Routes>
-        <Route exact path='/' element={ <HomePage /> } />
+        <Route exact path='/' element={<HomePage />} />
 
-        <Route path='/Login' element={ <Login /> } />
+        <Route path='/Login' element={<Login />} />
 
-        <Route path='/Signup' element={ <Signup /> } />
+        <Route path='/Signup' element={<Signup />} />
         {/* <Route path='/'><HomePage /></Route>
         <Route path='/Login'><Login /></Route>
         <Route path='/Signup'><Signup /></Route> */}
