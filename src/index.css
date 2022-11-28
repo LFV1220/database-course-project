@@ -31,6 +31,11 @@ code {
   padding: 10px;
 }
 
+.signout-btn {
+  border: 1px solid #646464;
+  border-radius: 5px;
+}
+
 /* Menu */
 .menu-container {
   background: #212224;
@@ -104,7 +109,7 @@ h2 {
 .login-container-wrapper {
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - 56px);
   background: #212224;
   color: #e2e2e2;
 }
@@ -113,8 +118,8 @@ h2 {
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  width: 20vw;
-  height: 30vw;
+  width: 30vw;
+  height: 40vw;
   border: solid 0.5px #b4b4b4;
   border-radius: 5px;
   padding: 10px;

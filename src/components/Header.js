@@ -1,6 +1,8 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import { Link } from 'react-router-dom';
+import { auth, app } from '../firebase-config';
 
 function Header() {
     return (
@@ -16,8 +18,10 @@ function Header() {
                             className="d-inline-block align-top"
                         />
                     </Navbar.Brand>
-                </Container>
-                <Container>
+                    {/* <button className='signout-btn' onClick={() => console.log(auth._currentUser)}>Sign Out</button> */}
+                    { auth._currentUser == null 
+                    ? <Link to='/Login'><button className='signout-btn'>Sign In</button></Link>
+                    : <button className='signout-btn' onClick={() => auth.signOut()}>Sign Out</button> }
 
                 </Container>
             </Navbar>
