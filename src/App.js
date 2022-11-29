@@ -6,14 +6,18 @@ import {
   Routes, 
   Route
 } from 'react-router-dom';
+import { useState } from "react";
 
 function App() {
+
+  const [isSignedIn, setSignedIn] = useState(false);
+
   return (
     <Router>
-      <Header />
+      <Header isSignedIn={isSignedIn} setSignedIn={setSignedIn} />
       
       <Routes>
-        <Route path='/Login' element={ <Login /> } />
+        <Route path='/Login' element={ <Login setSignedIn={setSignedIn} /> } />
 
         <Route exact path='/' element={ <HomePage /> } />
       </Routes>

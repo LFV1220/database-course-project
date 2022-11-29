@@ -1,10 +1,26 @@
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Form';
+// import Button from 'react-bootstrap/Form';
+import { Link } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-const Login = () => {
+const Login = ({ setSignedIn }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const Login = () => {
+        const auth = getAuth();
+        setSignedIn(true);
+        try {
+            signInWithEmailAndPassword(auth, email, password)
+            .then(userCredential => {
+                const user = userCredential.user
+                console.log(user)
+            })
+        } catch(err) {
+            alert('Login unsuccessful')
+        }
+    }
 
     return (
         <div className='flex login-container-wrapper'>
@@ -24,9 +40,11 @@ const Login = () => {
                         <Form.Control onChange={e => setPassword(e.target.value)} type="password" placeholder="Password" />
                     </Form.Group>
                     <div className='flex submit-container'>
-                        <Button variant="primary" type="submit" onClick={() => console.log(email, " ", password)}>
-                            Submit
-                        </Button>
+                        <Link to='/'>
+                            <button className='signin-btn' variant="primary" type="submit" onClick={() => Login()}>
+                                Submit
+                            </button>
+                        </Link>
                     </div>
                 </Form>
             </div>
