@@ -53,7 +53,7 @@ const insertClasses = (body) => {
 const insertBuilding = (body) => {
     const { building, latitude, longitude } = body
     return new Promise(function (resolve, reject) {
-        
+
         pool.query('IF NOT EXISTS (SELECT * FROM Building WHERE prefix = $1) INSERT INTO Building VALUES ($1, $2, $3) RETURNING *', [building, latitude, longitude], (error, results) => {
             if (error) {
                 reject(error)
@@ -65,8 +65,8 @@ const insertBuilding = (body) => {
 // FIX THIS STILL
 const insertFeedback = (body) => {
     return new Promise(function (resolve, reject) {
-        const { feedbackText } = body
-        pool.query('INSERT INTO Feedback VALUES ($1) RETURNING *', [feedbackText], (error, results) => {
+        const { email, feedbackText } = body
+        pool.query('INSERT INTO Feedback VALUES (%1, $2) RETURNING *', [email, feedbackText], (error, results) => {
             if (error) {
                 reject(error)
             }

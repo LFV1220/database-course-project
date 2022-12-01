@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal'
+import { insertFeedback } from '../dbutil';
 
 function Header({ isSignedIn, setSignedIn }) {
 
@@ -14,6 +15,7 @@ function Header({ isSignedIn, setSignedIn }) {
 
     const handleClose = () => {
         setShow(false);
+        insertFeedback("joshua135@usf.edu", feedback);
         console.log(feedback);
     };
 

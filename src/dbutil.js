@@ -61,13 +61,13 @@ export function insertBuildings(building, latitude, longitude) {
     );
 }
 
-export function insertFeedback(feedbackText) {
+export function insertFeedback(email, feedbackText) {
   fetch('http://localhost:3001/feedback', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ feedbackText }),
+    body: JSON.stringify({ email, feedbackText }),
   })
     .then(response => {
       return response.text();
