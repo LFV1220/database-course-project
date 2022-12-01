@@ -61,6 +61,18 @@ const insertBuilding = (body) => {
         })
     })
 }
+// FIX THIS STILL
+const insertFeedback = (body) => {
+    return new Promise(function (resolve, reject) {
+        const { feedbackText } = body
+        pool.query('INSERT INTO Feedback VALUES ($1) RETURNING *', [feedbackText], (error, results) => {
+            if (error) {
+                reject(error)
+            }
+            resolve(`New feedback has been added at ${results.rows[0]}`)
+        })
+    })
+}
 const deleteClasses = (email) => {
     return new Promise(function (resolve, reject) {
         pool.query('DELETE FROM classes WHERE email = $1', [email], (error, results) => {
@@ -97,6 +109,7 @@ module.exports = {
     insertUser,
     insertClasses,
     insertBuilding,
+    insertFeedback,
     deleteClasses,
     deleteBuildings,
     getUsers,

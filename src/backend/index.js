@@ -58,6 +58,16 @@ app.post('/building', (req, res) => {
             res.status(500).send(error);
         })
 })
+app.post('/feedback', (req, res) => {
+    console.log(req.body)
+    queries.insertFeedback(req.body)
+        .then(response => {
+            res.status(200).send(response);
+        })
+        .catch(error => {
+            res.status(500).send(error);
+        })
+})
 app.delete('/classes/:email', (req, res) => {
     queries.deleteClasses(req.params.email)
         .then(response => {

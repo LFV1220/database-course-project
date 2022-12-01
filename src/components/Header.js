@@ -8,11 +8,13 @@ import Modal from 'react-bootstrap/Modal'
 
 function Header({ isSignedIn, setSignedIn }) {
 
+    const [feedback, setFeedback] = useState('');
     const signOut = () => setSignedIn(false);
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
         setShow(false);
+        console.log(feedback);
     };
 
     const handleShow = () => setShow(true);
@@ -51,7 +53,7 @@ function Header({ isSignedIn, setSignedIn }) {
                                             controlId="exampleForm.ControlTextarea1"
                                         >
                                             <Form.Label>What did you think?</Form.Label>
-                                            <Form.Control as="textarea" rows={3} />
+                                            <Form.Control onChange={e => setFeedback(e.target.value)} as="textarea" rows={3} />
                                         </Form.Group>
                                     </Form>
                                 </Modal.Body>
