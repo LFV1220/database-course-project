@@ -49,6 +49,7 @@ code {
   color: #e2e2e2;
   height: calc(100vh - 76px);
   width: 20vw;
+  min-width: 300px;
   border: solid 0.5px #646464;
   border-radius: 5px;
   padding: 10px;
