@@ -1,8 +1,14 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import { signOut } from 'firebase/auth';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import { Link } from 'react-router-dom';
+import { auth } from '../firebase-config';
 
-function Header() {
+function Header({ isSignedIn, setSignedIn }) {
+
+    const signOut = () => setSignedIn(false);
+
     return (
         <>
             <Navbar bg="dark" variant="dark">
@@ -16,9 +22,9 @@ function Header() {
                             className="d-inline-block align-top"
                         />
                     </Navbar.Brand>
-                </Container>
-                <Container>
-
+                    { isSignedIn
+                    ? <Link to='/Login'><button className='signout-btn' onClick={() => signOut()}>Sign Out</button></Link>
+                    : <Link to='/Login'><button className='signout-btn'>Sign In</button></Link> }
                 </Container>
             </Navbar>
         </>

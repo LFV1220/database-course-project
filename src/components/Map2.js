@@ -99,7 +99,7 @@ export default function Map2({ buildingsList }) {
   }, [start, finish]);
 
   return (
-    <>
+    <div>
       <RMap
         className="map"
         initial={{ center: fromLonLat([-82.414863, 28.061899]), zoom: 16 }}
@@ -370,6 +370,6 @@ export default function Map2({ buildingsList }) {
 			<RFeature geometry={new Point(fromLonLat(buildings['MRC']))} properties='MRC' />
         </RLayerVector>
       </RMap>
-    </>
+    </div>
   );
 }

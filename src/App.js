@@ -1,23 +1,27 @@
-import { useState } from 'react';
 import Header from "./components/Header";
-// import UsfMap from "./components/Map";
-import UsfMap2 from "./components/Map2";
-// import Menu from "./components/Menu";
-import Menu2 from "./components/Menu2";
+import HomePage from './components/HomePage';
+import Login from "./components/Login";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from 'react-router-dom';
+import { useState } from "react";
 
 function App() {
-  const [buildingsList, setBuildingsList] = useState([]);
+
+  const [isSignedIn, setSignedIn] = useState(false);
 
   return (
-    <div className="app">
-      <Header />
-      <div className='flex main-container'>
-        {/* <Menu setBuildingsList={ setBuildingsList } /> */}
-        <Menu2 setBuildingsList={ setBuildingsList } />
-        {/* <UsfMap buildingsList={ buildingsList } /> */}
-        <UsfMap2 buildingsList={ buildingsList } />
-      </div>
-    </div>
+    <Router>
+      <Header isSignedIn={isSignedIn} setSignedIn={setSignedIn} />
+
+      <Routes>
+        <Route path='/Login' element={<Login setSignedIn={setSignedIn} />} />
+
+        <Route exact path='/' element={<HomePage />} />
+      </Routes>
+    </Router>
   );
 }
 
