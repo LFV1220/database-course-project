@@ -1,9 +1,6 @@
-import { useState, useEffect } from 'react';
-import { signOut } from 'firebase/auth';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
-import { auth } from '../firebase-config';
 
 function Header({ isSignedIn, setSignedIn }) {
 
