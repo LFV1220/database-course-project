@@ -12,8 +12,16 @@ app.use(function (req, res, next) {
     next();
 });
 
-
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
+    queries.getUsers()
+        .then(response => {
+            res.status(200).send(response);
+        })
+        .catch(error => {
+            res.status(500).send(error);
+        })
+})
+app.get('/g', (req, res) => {
     queries.getUserRoutes()
         .then(response => {
             res.status(200).send(response);
