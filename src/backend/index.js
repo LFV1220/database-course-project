@@ -66,6 +66,15 @@ app.delete('/classes/:email', (req, res) => {
             res.status(500).send(error);
         })
 })
+app.delete('/building/:prefix', (req, res) => {
+    queries.deleteClasses(req.params.prefix)
+        .then(response => {
+            res.status(200).send(response);
+        })
+        .catch(error => {
+            res.status(500).send(error);
+        })
+})
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
 })

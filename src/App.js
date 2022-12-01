@@ -16,13 +16,13 @@ function App() {
   const [user, setUser] = useState();
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const [email, setEmail] = useState('joshuagourlay@gmail.com');
-
-  // useEffect(() => {
-  //   days.forEach(element => {
-  //     getUserRoutes(email, element);
-  //   });
-  // }, [email]);
-
+  /*
+  useEffect(() => {
+    days.forEach(element => {
+      getUserRoutes(email, element);
+    });
+  }, [email]);
+  */
   /* Add setUser(user) and useEffect [user] hook or something  then replace all instances of email with user.email */
   function getUserRoutes(email, day) {
     fetch('http://localhost:3001')
@@ -83,8 +83,19 @@ function App() {
   }
 
   function deleteClasses(email) {
-    let id = prompt('Enter merchant id');
     fetch(`http://localhost:3001/classes/${email}`, {
+      method: 'DELETE',
+    })
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        alert(data);
+      });
+  }
+
+  function deleteBuilding(prefix) {
+    fetch(`http://localhost:3001/building/${prefix}`, {
       method: 'DELETE',
     })
       .then(response => {

@@ -72,6 +72,17 @@ const deleteClasses = () => {
         })
     })
 }
+const deleteBuildings = () => {
+    return new Promise(function (resolve, reject) {
+        const prefix = parseInt(request.params.prefix)
+        pool.query('DELETE FROM Buildings WHERE prefix = $1', [prefix], (error, results) => {
+            if (error) {
+                reject(error)
+            }
+            resolve(`Building deleted with prefix: ${prefix}`)
+        })
+    })
+}
 const deleteOldUsers = () => { /*  Not Finished on any file  */
     return new Promise(function (resolve, reject) {
         const email = parseInt(request.params.email)
@@ -89,5 +100,6 @@ module.exports = {
     insertClasses,
     insertBuilding,
     deleteClasses,
+    deleteBuildings,
     getUsers,
 }
