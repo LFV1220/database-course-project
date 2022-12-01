@@ -25,7 +25,7 @@ function App() {
   */
   /* Add setUser(user) and useEffect [user] hook or something  then replace all instances of email with user.email */
   function getUserRoutes(email, day) {
-    fetch('http://localhost:3001')
+    fetch('http://localhost:3001/g')
       .then(response => {
         return response.text();
       })

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
+import { getUserRoutes } from '../dbutil';
 
 const Menu2 = ({ setBuildingsList }) => {
     const [value, setValue] = useState('Day');
@@ -24,6 +25,10 @@ const Menu2 = ({ setBuildingsList }) => {
 
         setFormCount(updatedInputs);
     }
+
+    useEffect(() => {
+        getUserRoutes('joshua135@usf.edu', value);
+    }, [value]);
 
     return (
         <div className="menu-container">

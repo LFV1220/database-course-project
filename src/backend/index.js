@@ -49,6 +49,7 @@ app.post('/classes', (req, res) => {
         })
 })
 app.post('/building', (req, res) => {
+    console.log(req.body)
     queries.insertBuilding(req.body)
         .then(response => {
             res.status(200).send(response);
@@ -67,7 +68,7 @@ app.delete('/classes/:email', (req, res) => {
         })
 })
 app.delete('/building/:prefix', (req, res) => {
-    queries.deleteClasses(req.params.prefix)
+    queries.deleteBuildings(req.params.prefix)
         .then(response => {
             res.status(200).send(response);
         })

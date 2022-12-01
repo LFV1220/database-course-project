@@ -53,17 +53,16 @@ const insertClasses = (body) => {
 const insertBuilding = (body) => {
     return new Promise(function (resolve, reject) {
         const { building, latitude, longitude } = body
-        pool.query('INSERT INTO Building VALUES ($1, $2, $3) RETURNING *', [building, latitude, longitude], (error, results) => {
+        pool.query('IF NOT EXISTS (SELECT * FROM Building WHERE prefix = $1) INSERT INTO Building VALUES ($1, $2, $3) RETURNING *', [building, latitude, longitude], (error, results) => {
             if (error) {
                 reject(error)
             }
-            resolve(`A new user has been added added: ${results.rows[0]}`)
+            resolve(`A new building has been added: ${building}`)
         })
     })
 }
-const deleteClasses = () => {
+const deleteClasses = (email) => {
     return new Promise(function (resolve, reject) {
-        const email = parseInt(request.params.email)
         pool.query('DELETE FROM classes WHERE email = $1', [email], (error, results) => {
             if (error) {
                 reject(error)
@@ -72,9 +71,8 @@ const deleteClasses = () => {
         })
     })
 }
-const deleteBuildings = () => {
+const deleteBuildings = (prefix) => {
     return new Promise(function (resolve, reject) {
-        const prefix = parseInt(request.params.prefix)
         pool.query('DELETE FROM Buildings WHERE prefix = $1', [prefix], (error, results) => {
             if (error) {
                 reject(error)
