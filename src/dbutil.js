@@ -53,7 +53,7 @@ export function insertBuildings(building, latitude, longitude) {
       return response.text();
     })
     .then(data => {
-      alert(data);
+      console.log(data);
     })
     .catch(error => {
       console.log(error);

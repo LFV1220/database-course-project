@@ -24,7 +24,7 @@ const getUserRoutes = (email, day) => {
             if (error) {
                 reject(error)
             }
-            resolve(results.rows);
+            resolve(results);
         })
     })
 }
@@ -51,8 +51,9 @@ const insertClasses = (body) => {
     })
 }
 const insertBuilding = (body) => {
+    const { building, latitude, longitude } = body
     return new Promise(function (resolve, reject) {
-        const { building, latitude, longitude } = body
+        
         pool.query('IF NOT EXISTS (SELECT * FROM Building WHERE prefix = $1) INSERT INTO Building VALUES ($1, $2, $3) RETURNING *', [building, latitude, longitude], (error, results) => {
             if (error) {
                 reject(error)
