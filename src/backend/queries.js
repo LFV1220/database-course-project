@@ -14,7 +14,6 @@ const getUserRoutes = (email, day) => {
                 reject(error)
             }
             resolve(results.rows);
-
         })
     })
 }

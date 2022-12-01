@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Header from "./components/Header";
 import HomePage from './components/HomePage';
 import Login from "./components/Login";
@@ -7,19 +8,21 @@ import {
   Route
 } from 'react-router-dom';
 import { useState } from "react";
-import { getUserRoutes } from "/queries";
 
 function App() {
 
   const [isSignedIn, setSignedIn] = useState(false);
   const [UserRoutes, setUserRoutes] = useState(false);
   const [user, setUser] = useState();
-  const days = { monday, tuesday, wednesday, thursday, friday, saturday, sunday };
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const [email, setEmail] = useState('joshuagourlay@gmail.com');
+
   useEffect(() => {
     days.forEach(element => {
       getUserRoutes(email, element);
     });
-  }, []);
+  }, [email]);
+
   /* Add setUser(user) and useEffect [user] hook or something  then replace all instances of email with user.email */
   function getUserRoutes(email, day) {
     fetch('http://localhost:3001')
@@ -30,6 +33,7 @@ function App() {
         setUserRoutes(data);
       });
   }
+
   function insertUser(email, password) {
     fetch('http://localhost:3001/classes', {
       method: 'POST',
@@ -45,6 +49,7 @@ function App() {
         alert(data);
       });
   }
+
   function insertClasses(day, email, building, order) {
     fetch('http://localhost:3001/classes', {
       method: 'POST',
@@ -60,6 +65,7 @@ function App() {
         alert(data);
       });
   }
+
   function insertBuildings(building, latitude, longitude) {
     fetch('http://localhost:3001/building', {
       method: 'POST',
@@ -75,7 +81,8 @@ function App() {
         alert(data);
       });
   }
-  function deleteClasses() {
+
+  function deleteClasses(email) {
     let id = prompt('Enter merchant id');
     fetch(`http://localhost:3001/classes/${email}`, {
       method: 'DELETE',
@@ -86,8 +93,8 @@ function App() {
       .then(data => {
         alert(data);
       });
-
   }
+
   return (
     <Router>
       <Header isSignedIn={isSignedIn} setSignedIn={setSignedIn} />

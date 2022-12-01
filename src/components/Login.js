@@ -51,3 +51,5 @@ const Login = ({ setSignedIn }) => {
         </div>
     )
 }
+
+export default Login;
