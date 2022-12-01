@@ -7,11 +7,87 @@ import {
   Route
 } from 'react-router-dom';
 import { useState } from "react";
+import { getUserRoutes } from "/queries";
 
 function App() {
 
   const [isSignedIn, setSignedIn] = useState(false);
+  const [UserRoutes, setUserRoutes] = useState(false);
+  const [user, setUser] = useState();
+  const days = { monday, tuesday, wednesday, thursday, friday, saturday, sunday };
+  useEffect(() => {
+    days.forEach(element => {
+      getUserRoutes(email, element);
+    });
+  }, []);
+  /* Add setUser(user) and useEffect [user] hook or something  then replace all instances of email with user.email */
+  function getUserRoutes(email, day) {
+    fetch('http://localhost:3001')
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        setUserRoutes(data);
+      });
+  }
+  function insertUser(email, password) {
+    fetch('http://localhost:3001/classes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    })
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        alert(data);
+      });
+  }
+  function insertClasses(day, email, building, order) {
+    fetch('http://localhost:3001/classes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ day, email, building, order }),
+    })
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        alert(data);
+      });
+  }
+  function insertBuildings(building, latitude, longitude) {
+    fetch('http://localhost:3001/building', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ building, latitude, longitude }),
+    })
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        alert(data);
+      });
+  }
+  function deleteClasses() {
+    let id = prompt('Enter merchant id');
+    fetch(`http://localhost:3001/classes/${email}`, {
+      method: 'DELETE',
+    })
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        alert(data);
+      });
 
+  }
   return (
     <Router>
       <Header isSignedIn={isSignedIn} setSignedIn={setSignedIn} />
