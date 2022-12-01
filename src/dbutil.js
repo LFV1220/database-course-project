@@ -53,7 +53,7 @@ export function getUserRoutes(email, day) {
         return response.text();
       })
       .then(data => {
-        alert(data);
+        console.log(data);
       })
       .catch(error => {
             console.log(error);

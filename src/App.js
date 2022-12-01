@@ -15,7 +15,7 @@ function App() {
   const [UserRoutes, setUserRoutes] = useState(false);
   const [user, setUser] = useState();
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const [email, setEmail] = useState('joshuagourlay@gmail.com');
+  const [email, setEmail] = useState('joshua135@usf.edu');
   /*
   useEffect(() => {
     days.forEach(element => {
