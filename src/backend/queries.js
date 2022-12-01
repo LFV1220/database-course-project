@@ -1,12 +1,23 @@
 const Pool = require('pg').Pool
 const pool = new Pool({
-    user: 'my_user',
+    user: 'postgres',
     host: 'localhost',
     database: 'my_database',
-    password: 'root',
+    password: 'Notch59#1',
     port: 5432
 });
 
+const getUsers = () => {
+    return new Promise(function (resolve, reject) {
+        pool.query('SELECT * FROM Users', (error, results) => {
+            if (error) {
+                reject(error)
+            }
+            resolve(results.rows);
+
+        })
+    })
+}
 const getUserRoutes = (email, day) => {
     return new Promise(function (resolve, reject) {
         pool.query('SELECT BuildingPrefix, Order FROM Classes WHERE UserEmail = $1, Days = $2 ORDER BY Order;', [email, day], (error, results) => {
@@ -21,7 +32,7 @@ const getUserRoutes = (email, day) => {
 const insertUser = (body) => {
     return new Promise(function (resolve, reject) {
         const { email, password } = body
-        pool.query('INSERT INTO Users VALUES ($1, $2, CURRENT_DATE) RETURNING *', [email, password], (error, results) => {
+        pool.query('INSERT INTO Users VALUES ($1, $2, CURRENT_DATE()) RETURNING *', [email, password], (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -65,11 +76,11 @@ const deleteClasses = () => {
 const deleteOldUsers = () => { /*  Not Finished on any file  */
     return new Promise(function (resolve, reject) {
         const email = parseInt(request.params.email)
-        pool.query('DELETE FROM Users WHERE email = $1, Age()', [email], (error, results) => {
+        pool.query('DELETE FROM Users WHERE Age(SignUpDate) >= 5', [email], (error, results) => {
             if (error) {
                 reject(error)
             }
-            resolve(`Classes deleted with email: ${email}`)
+            resolve(`All user accounts older than 5 years old purged.`)
         })
     })
 }
@@ -79,4 +90,5 @@ module.exports = {
     insertClasses,
     insertBuilding,
     deleteClasses,
+    getUsers,
 }
