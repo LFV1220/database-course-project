@@ -62,7 +62,6 @@ const insertBuilding = (body) => {
         })
     })
 }
-// FIX THIS STILL
 const insertFeedback = (body) => {
     return new Promise(function (resolve, reject) {
         const { email, feedbackText } = body
