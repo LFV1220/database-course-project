@@ -2,14 +2,14 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 // import Button from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../firebase-config';
 
 const Login = ({ setSignedIn }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const Login = () => {
-        const auth = getAuth();
+    const Login = () => {;
         setSignedIn(true);
         try {
             signInWithEmailAndPassword(auth, email, password)
