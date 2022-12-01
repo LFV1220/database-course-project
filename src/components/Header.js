@@ -11,7 +11,10 @@ function Header({ isSignedIn, setSignedIn }) {
     const signOut = () => setSignedIn(false);
     const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false);
+    };
+
     const handleShow = () => setShow(true);
 
     return (
@@ -33,45 +36,32 @@ function Header({ isSignedIn, setSignedIn }) {
 
                     {isSignedIn
                         ? <div>
-                            <Button variant="primary" onClick={handleShow}>
-                                Test heading
-                            </Button>
+                            <button className="signout-btn" onClick={handleShow}>
+                                Feedback
+                            </button>
                             <Modal show={show} onHide={handleClose}>
                                 <Modal.Header closeButton>
-                                    <Modal.Title>Modal heading</Modal.Title>
+                                    <Modal.Title>Got feedback?</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
+                                    <p margin="45px">I have a joke about UDP. But you might not get it.</p>
                                     <Form>
-                                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                            <Form.Label>Email address</Form.Label>
-                                            <Form.Control
-                                                type="email"
-                                                placeholder="name@example.com"
-                                                autoFocus
-                                            />
-                                        </Form.Group>
                                         <Form.Group
                                             className="mb-3"
                                             controlId="exampleForm.ControlTextarea1"
                                         >
-                                            <Form.Label>Example textarea</Form.Label>
+                                            <Form.Label>What did you think?</Form.Label>
                                             <Form.Control as="textarea" rows={3} />
                                         </Form.Group>
                                     </Form>
                                 </Modal.Body>
                                 <Modal.Footer>
-                                    <Button variant="secondary" onClick={handleClose}>
-                                        Close
-                                    </Button>
                                     <Button variant="primary" onClick={handleClose}>
-                                        Save Changes
+                                        Send Feedback
                                     </Button>
                                 </Modal.Footer>
                             </Modal>
                         </div>
-
-
-
                         : null}
                 </Container>
             </Navbar>
