@@ -17,11 +17,11 @@ function App() {
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const [email, setEmail] = useState('joshuagourlay@gmail.com');
 
-  useEffect(() => {
-    days.forEach(element => {
-      getUserRoutes(email, element);
-    });
-  }, [email]);
+  // useEffect(() => {
+  //   days.forEach(element => {
+  //     getUserRoutes(email, element);
+  //   });
+  // }, [email]);
 
   /* Add setUser(user) and useEffect [user] hook or something  then replace all instances of email with user.email */
   function getUserRoutes(email, day) {
