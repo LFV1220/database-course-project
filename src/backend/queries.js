@@ -50,11 +50,10 @@ const insertClasses = (body) => {
         })
     })
 }
-const insertBuilding = (body) => {
-    const { building, latitude, longitude } = body
+const insertBuilding = (building, latitude, longitude) => {
     return new Promise(function (resolve, reject) {
         
-        pool.query('IF NOT EXISTS (SELECT * FROM Building WHERE prefix = $1) INSERT INTO Building VALUES ($1, $2, $3) RETURNING *', [building, latitude, longitude], (error, results) => {
+        pool.query('INSERT INTO building VALUES ($1, $2, $3) ON CONFLICT DO NOTHING RETURNING *', [building, latitude, longitude], (error, results) => {
             if (error) {
                 reject(error)
             }

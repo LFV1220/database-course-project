@@ -49,7 +49,8 @@ app.post('/classes', (req, res) => {
         })
 })
 app.post('/building', (req, res) => {
-    queries.insertBuilding(req.body)
+    console.log(req.body.building, req.body.latitude, req.body.longitude)
+    queries.insertBuilding(req.body.building, req.body.latitude, req.body.longitude)
         .then(response => {
             res.status(200).send(response);
         })
