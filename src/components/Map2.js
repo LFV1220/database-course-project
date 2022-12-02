@@ -83,8 +83,8 @@ export default function Map2({ buildingsList }) {
 		FAH: [-82.416686, 28.063077],
 		MRC: [-82.419555, 28.065334]
 	};
+	
 	React.useEffect(() => {
-		insertBuildings('HEN', 68.000, 68.000);
 		Object.keys(buildings).forEach(key => {
 			// we need delete query and insert query
 			insertBuildings(key, buildings[key][1], buildings[key][0]);
