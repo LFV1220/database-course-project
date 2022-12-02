@@ -81,7 +81,7 @@ export function insertFeedback(email, feedbackText) {
 }
 
 export function deleteClasses(email) {
-  fetch(`http://localhost:3001/classes/${email}/${day}`, {
+  fetch(`http://localhost:3001/classes/${email}`, {
     method: 'DELETE',
   })
     .then(response => {
