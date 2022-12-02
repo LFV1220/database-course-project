@@ -23,8 +23,7 @@ function Header({ isSignedIn, setSignedIn }) {
 		if(!regex.test(feedbackText))
 			alert('Invalid characters in feedback form');
 		else
-			return;
-			// Post this feedback to db
+			insertFeedback('joshua135@usf.edu', feedbackText);
     };
 
     const handleShow = () => setShow(true);
