@@ -53,6 +53,7 @@ const buildRoute = (start, finish) => {
 }
 
 export default function Map2({ buildingsList }) {
+
 	const [start, setStart] = React.useState(null);
 	const [finish, setFinish] = React.useState(null);
 	const [step, setStep] = React.useState(0);
@@ -83,6 +84,15 @@ export default function Map2({ buildingsList }) {
 		FAH: [-82.416686, 28.063077],
 		MRC: [-82.419555, 28.065334]
 	};
+
+  React.useEffect(() => {
+    // Get buildings from database then store them in a local variable
+
+    // Use Object.keys(buildings).forEach(() => {}) to iterate through buildings object in this file https://masteringjs.io/tutorials/fundamentals/foreach-object
+
+    // For each key in the buildings object, check if that key exists in the object coming from the database
+  }, [])
+
 	React.useEffect(() => {
 		Object.keys(buildings).forEach(key => {
 			// we need delete query and insert query
