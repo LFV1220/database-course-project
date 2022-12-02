@@ -10,9 +10,19 @@ function Header({ isSignedIn, setSignedIn }) {
 
     const signOut = () => setSignedIn(false);
     const [show, setShow] = useState(false);
+	const [feedbackText, setFeedbackText] = useState('');
 
     const handleClose = () => {
         setShow(false);
+
+		const regex = /^[A-Za-z0-9./!?]*$/;
+		console.log(regex.test(feedbackText))
+
+		if(!regex.test(feedbackText))
+			alert('Invalid characters in feedback form');
+		else
+			return;
+			// Post this feedback to db
     };
 
     const handleShow = () => setShow(true);
@@ -51,7 +61,7 @@ function Header({ isSignedIn, setSignedIn }) {
                                             controlId="exampleForm.ControlTextarea1"
                                         >
                                             <Form.Label>What did you think?</Form.Label>
-                                            <Form.Control as="textarea" rows={3} />
+                                            <Form.Control as="textarea" rows={3} onChange={e => setFeedbackText(e.target.value)} />
                                         </Form.Group>
                                     </Form>
                                 </Modal.Body>
