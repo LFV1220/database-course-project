@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal'
+import { insertFeedback } from '../dbutil';
 
 function Header({ isSignedIn, setSignedIn }) {
 
+    const [feedback, setFeedback] = useState('');
     const signOut = () => setSignedIn(false);
     const [show, setShow] = useState(false);
 	const [feedbackText, setFeedbackText] = useState('');

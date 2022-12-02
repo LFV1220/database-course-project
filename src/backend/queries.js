@@ -7,9 +7,20 @@ const pool = new Pool({
     port: 5432
 });
 
-const getUsers = () => {
+const getUsers = () => { // test query #1
     return new Promise(function (resolve, reject) {
-        pool.query('SELECT * FROM Users', (error, results) => {
+        pool.query('SELECT * FROM users', (error, results) => {
+            if (error) {
+                reject(error)
+            }
+            resolve(results.rows);
+
+        })
+    })
+}
+const getUsersDates = () => { // test query #2
+    return new Promise(function (resolve, reject) {
+        pool.query('SELECT Date_part(\'year\', signupdate) FROM users', (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -20,7 +31,17 @@ const getUsers = () => {
 }
 const getUserRoutes = (email, day) => {
     return new Promise(function (resolve, reject) {
-        pool.query('SELECT BuildingPrefix, Order FROM Classes WHERE UserEmail = $1, Days = $2 ORDER BY Order;', [email, day], (error, results) => {
+        pool.query('SELECT BuildingPrefix, Order FROM classes WHERE UserEmail = $1 and Days = $2 ORDER BY Order', [email, day], (error, results) => {
+            if (error) {
+                reject(error)
+            }
+            resolve(results);
+        })
+    })
+}
+const getMostVisitedBuildings = () => {
+    return new Promise(function (resolve, reject) {
+        pool.query('SELECT buildingprefix, COUNT(buildingprefix) AS numclasses FROM classes GROUP BY buildingprefix ORDER BY numclasses desc LIMIT 3', (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -31,7 +52,7 @@ const getUserRoutes = (email, day) => {
 const insertUser = (body) => {
     return new Promise(function (resolve, reject) {
         const { email, password } = body
-        pool.query('INSERT INTO Users VALUES ($1, $2, CURRENT_DATE()) RETURNING *', [email, password], (error, results) => {
+        pool.query('INSERT INTO users VALUES ($1, $2, CURRENT_DATE) RETURNING *', [email, password], (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -42,7 +63,7 @@ const insertUser = (body) => {
 const insertClasses = (body) => {
     return new Promise(function (resolve, reject) {
         const { day, email, building, order } = body
-        pool.query('INSERT INTO Classes VALUES ($1, $2, $3, $4) RETURNING *', [day, email, building, order], (error, results) => {
+        pool.query('INSERT INTO classes VALUES ($1, $2, $3, $4) RETURNING *', [day, email, building, order], (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -50,14 +71,24 @@ const insertClasses = (body) => {
         })
     })
 }
-const insertBuilding = (body) => {
+const insertBuilding = (building, latitude, longitude) => {
     return new Promise(function (resolve, reject) {
-        const { building, latitude, longitude } = body
-        pool.query('IF NOT EXISTS (SELECT * FROM Building WHERE prefix = $1) INSERT INTO Building VALUES ($1, $2, $3) RETURNING *', [building, latitude, longitude], (error, results) => {
+        pool.query('INSERT INTO building VALUES ($1, $2, $3) ON CONFLICT DO NOTHING RETURNING *', [building, latitude, longitude], (error, results) => {
             if (error) {
                 reject(error)
             }
             resolve(`A new building has been added: ${building}`)
+        })
+    })
+}
+const insertFeedback = (body) => {
+    return new Promise(function (resolve, reject) {
+        const { email, feedbackText } = body
+        pool.query('INSERT INTO feedback VALUES ($1, $2) ON CONFLICT DO NOTHING RETURNING *', [email, feedbackText], (error, results) => {
+            if (error) {
+                reject(error)
+            }
+            resolve(`New feedback has been added for ${results.rows[0]}`)
         })
     })
 }
@@ -73,7 +104,7 @@ const deleteClasses = (email) => {
 }
 const deleteBuildings = (prefix) => {
     return new Promise(function (resolve, reject) {
-        pool.query('DELETE FROM Buildings WHERE prefix = $1', [prefix], (error, results) => {
+        pool.query('DELETE FROM buildings WHERE prefix = $1', [prefix], (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -81,23 +112,26 @@ const deleteBuildings = (prefix) => {
         })
     })
 }
-const deleteOldUsers = () => { /*  Not Finished on any file  */
+const deleteOldUsers = () => {
     return new Promise(function (resolve, reject) {
-        const email = parseInt(request.params.email)
-        pool.query('DELETE FROM Users WHERE Age(SignUpDate) >= 5', [email], (error, results) => {
+        pool.query('DELETE FROM users WHERE Date_part(\'year\', TIMESTAMP \'NOW()\') - Date_part(\'year\', signupdate) >= 2', (error, results) => {
             if (error) {
                 reject(error)
             }
-            resolve(`All user accounts older than 5 years old purged.`)
+            resolve(`All user accounts created 2 or more years ago purged.`)
         })
     })
 }
 module.exports = {
     getUserRoutes,
     insertUser,
+    getMostVisitedBuildings,
     insertClasses,
     insertBuilding,
+    insertFeedback,
     deleteClasses,
     deleteBuildings,
+    deleteOldUsers,
     getUsers,
+    getUsersDates,
 }

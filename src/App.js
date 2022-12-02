@@ -16,7 +16,15 @@ function App() {
   const [UserRoutes, setUserRoutes] = useState(false);
   const [user, setUser] = useState();
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const [email, setEmail] = useState('joshuagourlay@gmail.com');
+  const [email, setEmail] = useState('joshua135@usf.edu');
+  /*
+  useEffect(() => {
+    days.forEach(element => {
+      getUserRoutes(email, element);
+    });
+  }, [email]);
+  */
+  /* Add setUser(user) and useEffect [user] hook or something  then replace all instances of email with user.email */
   
   function getUserRoutes(email, day) {
     fetch('http://localhost:3001/g')
@@ -25,6 +33,16 @@ function App() {
       })
       .then(data => {
         setUserRoutes(data);
+      });
+  }
+
+  function getMostVisitedBuildings(buildings) {
+    fetch('http://localhost:3001/h')
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        getMostVisitedBuildings(data);
       });
   }
 
