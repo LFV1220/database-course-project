@@ -7,7 +7,7 @@ const pool = new Pool({
     port: 5432
 });
 
-const getUsers = () => {
+const getUsers = () => { // test query #1
     return new Promise(function (resolve, reject) {
         pool.query('SELECT * FROM users', (error, results) => {
             if (error) {
@@ -18,9 +18,20 @@ const getUsers = () => {
         })
     })
 }
+const getUsersDates = () => { // test query #2
+    return new Promise(function (resolve, reject) {
+        pool.query('SELECT Date_part(\'year\', signupdate) FROM users', (error, results) => {
+            if (error) {
+                reject(error)
+            }
+            resolve(results.rows);
+
+        })
+    })
+}
 const getUserRoutes = (email, day) => {
     return new Promise(function (resolve, reject) {
-        pool.query('SELECT BuildingPrefix, Order FROM classes WHERE UserEmail = $1, Days = $2 ORDER BY Order', [email, day], (error, results) => {
+        pool.query('SELECT BuildingPrefix, Order FROM classes WHERE UserEmail = $1 and Days = $2 ORDER BY Order', [email, day], (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -28,20 +39,20 @@ const getUserRoutes = (email, day) => {
         })
     })
 }
-const getMostVisitedBuildings = (buildings) => {
+const getMostVisitedBuildings = () => {
     return new Promise(function (resolve, reject) {
-        pool.query('SELECT BuildingPrefix, COUNT(Prefix) AS NumClasses FROM classes WHERE Prefix = $1 GROUP BY BuildingPrefix ORDER BY NumClasses desc LIMIT 3', [buildings], (error, results) => {
+        pool.query('SELECT buildingprefix, COUNT(buildingprefix) AS numclasses FROM classes GROUP BY buildingprefix ORDER BY numclasses desc LIMIT 3', (error, results) => {
             if (error) {
                 reject(error)
             }
-            resolve(results);
+            resolve(results.rows);
         })
     })
 }
 const insertUser = (body) => {
     return new Promise(function (resolve, reject) {
         const { email, password } = body
-        pool.query('INSERT INTO users VALUES ($1, $2, CURRENT_DATE()) RETURNING *', [email, password], (error, results) => {
+        pool.query('INSERT INTO users VALUES ($1, $2, CURRENT_DATE) RETURNING *', [email, password], (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -101,7 +112,7 @@ const deleteBuildings = (prefix) => {
         })
     })
 }
-const deleteOldUsers = () => { /*  Not Finished on any file  */
+const deleteOldUsers = () => {
     return new Promise(function (resolve, reject) {
         pool.query('DELETE FROM users WHERE Date_part(\'year\', TIMESTAMP \'NOW()\') - Date_part(\'year\', signupdate) >= 2', (error, results) => {
             if (error) {
@@ -114,6 +125,7 @@ const deleteOldUsers = () => { /*  Not Finished on any file  */
 module.exports = {
     getUserRoutes,
     insertUser,
+    getMostVisitedBuildings,
     insertClasses,
     insertBuilding,
     insertFeedback,
@@ -121,4 +133,5 @@ module.exports = {
     deleteBuildings,
     deleteOldUsers,
     getUsers,
+    getUsersDates,
 }

@@ -21,6 +21,15 @@ app.get('/test', (req, res) => {
             res.status(500).send(error);
         })
 })
+app.get('/test2', (req, res) => {
+    queries.getUsersDates()
+        .then(response => {
+            res.status(200).send(response);
+        })
+        .catch(error => {
+            res.status(500).send(error);
+        })
+})
 app.get('/getroutes', (req, res) => {
     queries.getUserRoutes()
         .then(response => {
@@ -30,7 +39,7 @@ app.get('/getroutes', (req, res) => {
             res.status(500).send(error);
         })
 })
-app.get('/h', (req, res) => {
+app.get('/getmostvisited', (req, res) => {
     queries.getMostVisitedBuildings()
         .then(response => {
             res.status(200).send(response);
