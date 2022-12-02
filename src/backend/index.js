@@ -21,7 +21,7 @@ app.get('/test', (req, res) => {
             res.status(500).send(error);
         })
 })
-app.get('/g', (req, res) => {
+app.get('/getroutes', (req, res) => {
     queries.getUserRoutes()
         .then(response => {
             res.status(200).send(response);
@@ -51,6 +51,16 @@ app.post('/classes', (req, res) => {
 app.post('/building', (req, res) => {
     console.log(req.body.building, req.body.latitude, req.body.longitude)
     queries.insertBuilding(req.body.building, req.body.latitude, req.body.longitude)
+        .then(response => {
+            res.status(200).send(response);
+        })
+        .catch(error => {
+            res.status(500).send(error);
+        })
+})
+app.post('/feedback', (req, res) => {
+    console.log(req.body)
+    queries.insertFeedback(req.body)
         .then(response => {
             res.status(200).send(response);
         })

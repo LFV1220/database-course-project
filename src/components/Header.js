@@ -5,14 +5,18 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal'
+import { insertFeedback } from '../dbutil';
 
 function Header({ isSignedIn, setSignedIn }) {
 
+    const [feedback, setFeedback] = useState('');
     const signOut = () => setSignedIn(false);
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
         setShow(false);
+        insertFeedback("joshua135@usf.edu", feedback);
+        console.log(feedback);
     };
 
     const handleShow = () => setShow(true);
@@ -51,7 +55,7 @@ function Header({ isSignedIn, setSignedIn }) {
                                             controlId="exampleForm.ControlTextarea1"
                                         >
                                             <Form.Label>What did you think?</Form.Label>
-                                            <Form.Control as="textarea" rows={3} />
+                                            <Form.Control onChange={e => setFeedback(e.target.value)} as="textarea" rows={3} />
                                         </Form.Group>
                                     </Form>
                                 </Modal.Body>

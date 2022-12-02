@@ -9,7 +9,7 @@ const pool = new Pool({
 
 const getUsers = () => {
     return new Promise(function (resolve, reject) {
-        pool.query('SELECT * FROM Users', (error, results) => {
+        pool.query('SELECT * FROM users', (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -20,7 +20,7 @@ const getUsers = () => {
 }
 const getUserRoutes = (email, day) => {
     return new Promise(function (resolve, reject) {
-        pool.query('SELECT BuildingPrefix, Order FROM Classes WHERE UserEmail = $1, Days = $2 ORDER BY Order;', [email, day], (error, results) => {
+        pool.query('SELECT BuildingPrefix, Order FROM classes WHERE UserEmail = $1, Days = $2 ORDER BY Order;', [email, day], (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -31,7 +31,7 @@ const getUserRoutes = (email, day) => {
 const insertUser = (body) => {
     return new Promise(function (resolve, reject) {
         const { email, password } = body
-        pool.query('INSERT INTO Users VALUES ($1, $2, CURRENT_DATE()) RETURNING *', [email, password], (error, results) => {
+        pool.query('INSERT INTO users VALUES ($1, $2, CURRENT_DATE()) RETURNING *', [email, password], (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -42,7 +42,7 @@ const insertUser = (body) => {
 const insertClasses = (body) => {
     return new Promise(function (resolve, reject) {
         const { day, email, building, order } = body
-        pool.query('INSERT INTO Classes VALUES ($1, $2, $3, $4) RETURNING *', [day, email, building, order], (error, results) => {
+        pool.query('INSERT INTO classes VALUES ($1, $2, $3, $4) RETURNING *', [day, email, building, order], (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -52,12 +52,22 @@ const insertClasses = (body) => {
 }
 const insertBuilding = (building, latitude, longitude) => {
     return new Promise(function (resolve, reject) {
-        
         pool.query('INSERT INTO building VALUES ($1, $2, $3) ON CONFLICT DO NOTHING RETURNING *', [building, latitude, longitude], (error, results) => {
             if (error) {
                 reject(error)
             }
             resolve(`A new building has been added: ${building}`)
+        })
+    })
+}
+const insertFeedback = (body) => {
+    return new Promise(function (resolve, reject) {
+        const { email, feedbackText } = body
+        pool.query('INSERT INTO Feedback VALUES ($1, $2) RETURNING *', [email, feedbackText], (error, results) => {
+            if (error) {
+                reject(error)
+            }
+            resolve(`New feedback has been added at ${results.rows[0]}`)
         })
     })
 }
@@ -73,7 +83,7 @@ const deleteClasses = (email) => {
 }
 const deleteBuildings = (prefix) => {
     return new Promise(function (resolve, reject) {
-        pool.query('DELETE FROM Buildings WHERE prefix = $1', [prefix], (error, results) => {
+        pool.query('DELETE FROM buildings WHERE prefix = $1', [prefix], (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -83,12 +93,11 @@ const deleteBuildings = (prefix) => {
 }
 const deleteOldUsers = () => { /*  Not Finished on any file  */
     return new Promise(function (resolve, reject) {
-        const email = parseInt(request.params.email)
-        pool.query('DELETE FROM Users WHERE Age(SignUpDate) >= 5', [email], (error, results) => {
+        pool.query('DELETE FROM users WHERE Date_part(\'year\', TIMESTAMP \'NOW()\') - Date_part(\'year\', signupdate) >= 2', (error, results) => {
             if (error) {
                 reject(error)
             }
-            resolve(`All user accounts older than 5 years old purged.`)
+            resolve(`All user accounts created 2 or more years ago purged.`)
         })
     })
 }
@@ -97,7 +106,9 @@ module.exports = {
     insertUser,
     insertClasses,
     insertBuilding,
+    insertFeedback,
     deleteClasses,
     deleteBuildings,
+    deleteOldUsers,
     getUsers,
 }
