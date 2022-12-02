@@ -30,6 +30,15 @@ app.get('/getroutes', (req, res) => {
             res.status(500).send(error);
         })
 })
+app.get('/h', (req, res) => {
+    queries.getMostVisitedBuildings()
+        .then(response => {
+            res.status(200).send(response);
+        })
+        .catch(error => {
+            res.status(500).send(error);
+        })
+})
 app.post('/user', (req, res) => {
     queries.insertUser(req.body)
         .then(response => {

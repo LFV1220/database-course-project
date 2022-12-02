@@ -20,7 +20,17 @@ const getUsers = () => {
 }
 const getUserRoutes = (email, day) => {
     return new Promise(function (resolve, reject) {
-        pool.query('SELECT BuildingPrefix, Order FROM classes WHERE UserEmail = $1, Days = $2 ORDER BY Order;', [email, day], (error, results) => {
+        pool.query('SELECT BuildingPrefix, Order FROM classes WHERE UserEmail = $1, Days = $2 ORDER BY Order', [email, day], (error, results) => {
+            if (error) {
+                reject(error)
+            }
+            resolve(results);
+        })
+    })
+}
+const getMostVisitedBuildings = (buildings) => {
+    return new Promise(function (resolve, reject) {
+        pool.query('SELECT BuildingPrefix, COUNT(Prefix) AS NumClasses FROM classes WHERE Prefix = $1 GROUP BY BuildingPrefix ORDER BY NumClasses desc LIMIT 3', [buildings], (error, results) => {
             if (error) {
                 reject(error)
             }
