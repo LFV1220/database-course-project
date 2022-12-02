@@ -84,11 +84,11 @@ const insertBuilding = (building, latitude, longitude) => {
 const insertFeedback = (body) => {
     return new Promise(function (resolve, reject) {
         const { email, feedbackText } = body
-        pool.query('INSERT INTO Feedback VALUES ($1, $2) RETURNING *', [email, feedbackText], (error, results) => {
+        pool.query('INSERT INTO feedback VALUES ($1, $2) ON CONFLICT DO NOTHING RETURNING *', [email, feedbackText], (error, results) => {
             if (error) {
                 reject(error)
             }
-            resolve(`New feedback has been added at ${results.rows[0]}`)
+            resolve(`New feedback has been added for ${results.rows[0]}`)
         })
     })
 }

@@ -8,6 +8,7 @@ import {
   Route
 } from 'react-router-dom';
 import { useState } from "react";
+import Signup from './components/Signup';
 
 function App() {
 
@@ -24,6 +25,8 @@ function App() {
   }, [email]);
   */
   /* Add setUser(user) and useEffect [user] hook or something  then replace all instances of email with user.email */
+  const [email, setEmail] = useState('joshuagourlay@gmail.com');
+  
   function getUserRoutes(email, day) {
     fetch('http://localhost:3001/g')
       .then(response => {
@@ -121,8 +124,13 @@ function App() {
       <Header isSignedIn={isSignedIn} setSignedIn={setSignedIn} />
 
       <Routes>
-        <Route exact path='/' element={<HomePage />} />
         <Route path='/Login' element={<Login setSignedIn={setSignedIn} />} />
+
+        <Route exact path='/' element={<HomePage />} />
+
+        <Route path='/Login' element={<Login setSignedIn={setSignedIn} />} />
+
+        <Route path='/Signup' element={<Signup setSignedIn={setSignedIn} />} />
       </Routes>
     </Router>
   );
