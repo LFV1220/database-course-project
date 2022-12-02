@@ -16,14 +16,7 @@ function App() {
   const [user, setUser] = useState();
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const [email, setEmail] = useState('joshuagourlay@gmail.com');
-  /*
-  useEffect(() => {
-    days.forEach(element => {
-      getUserRoutes(email, element);
-    });
-  }, [email]);
-  */
-  /* Add setUser(user) and useEffect [user] hook or something  then replace all instances of email with user.email */
+  
   function getUserRoutes(email, day) {
     fetch('http://localhost:3001/g')
       .then(response => {
@@ -111,9 +104,9 @@ function App() {
       <Header isSignedIn={isSignedIn} setSignedIn={setSignedIn} />
 
       <Routes>
-        <Route path='/Login' element={<Login setSignedIn={setSignedIn} />} />
-
         <Route exact path='/' element={<HomePage />} />
+
+        <Route path='/Login' element={<Login setSignedIn={setSignedIn} />} />
       </Routes>
     </Router>
   );
