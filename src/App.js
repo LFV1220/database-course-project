@@ -105,6 +105,8 @@ function App() {
       <Header isSignedIn={isSignedIn} setSignedIn={setSignedIn} />
 
       <Routes>
+        <Route path='/Login' element={<Login setSignedIn={setSignedIn} />} />
+
         <Route exact path='/' element={<HomePage />} />
 
         <Route path='/Login' element={<Login setSignedIn={setSignedIn} />} />
