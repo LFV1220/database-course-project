@@ -37,6 +37,7 @@ const Login = ({ setSignedIn }) => {
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
                         <Form.Control onChange={e => setPassword(e.target.value)} type="password" placeholder="Password" />
+                        <Link to='/Signup'><p>Don't have an account? Signup here</p></Link>
                     </Form.Group>
                     <div className='flex submit-container'>
                         <Link to='/'>

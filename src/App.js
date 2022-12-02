@@ -8,6 +8,7 @@ import {
   Route
 } from 'react-router-dom';
 import { useState } from "react";
+import Signup from './components/Signup';
 
 function App() {
 
@@ -107,6 +108,8 @@ function App() {
         <Route exact path='/' element={<HomePage />} />
 
         <Route path='/Login' element={<Login setSignedIn={setSignedIn} />} />
+
+        <Route path='/Signup' element={<Signup setSignedIn={setSignedIn} />} />
       </Routes>
     </Router>
   );
