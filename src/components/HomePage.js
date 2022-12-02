@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Menu2 from './Menu2';
 import UsfMap2 from './Map2';
 
