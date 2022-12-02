@@ -25,7 +25,6 @@ function App() {
   }, [email]);
   */
   /* Add setUser(user) and useEffect [user] hook or something  then replace all instances of email with user.email */
-  const [email, setEmail] = useState('joshuagourlay@gmail.com');
   
   function getUserRoutes(email, day) {
     fetch('http://localhost:3001/g')
