@@ -34,6 +34,16 @@ function App() {
       });
   }
 
+  function getMostVisitedBuildings(buildings) {
+    fetch('http://localhost:3001/h')
+      .then(response => {
+        return response.text();
+      })
+      .then(data => {
+        getMostVisitedBuildings(data);
+      });
+  }
+
   function insertUser(email, password) {
     fetch('http://localhost:3001/classes', {
       method: 'POST',
@@ -111,9 +121,8 @@ function App() {
       <Header isSignedIn={isSignedIn} setSignedIn={setSignedIn} />
 
       <Routes>
-        <Route path='/Login' element={<Login setSignedIn={setSignedIn} />} />
-
         <Route exact path='/' element={<HomePage />} />
+        <Route path='/Login' element={<Login setSignedIn={setSignedIn} />} />
       </Routes>
     </Router>
   );

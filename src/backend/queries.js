@@ -9,7 +9,7 @@ const pool = new Pool({
 
 const getUsers = () => {
     return new Promise(function (resolve, reject) {
-        pool.query('SELECT * FROM Users', (error, results) => {
+        pool.query('SELECT * FROM users', (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -20,7 +20,17 @@ const getUsers = () => {
 }
 const getUserRoutes = (email, day) => {
     return new Promise(function (resolve, reject) {
-        pool.query('SELECT BuildingPrefix, Order FROM Classes WHERE UserEmail = $1, Days = $2 ORDER BY Order;', [email, day], (error, results) => {
+        pool.query('SELECT BuildingPrefix, Order FROM classes WHERE UserEmail = $1, Days = $2 ORDER BY Order', [email, day], (error, results) => {
+            if (error) {
+                reject(error)
+            }
+            resolve(results);
+        })
+    })
+}
+const getMostVisitedBuildings = (buildings) => {
+    return new Promise(function (resolve, reject) {
+        pool.query('SELECT BuildingPrefix, COUNT(Prefix) AS NumClasses FROM classes WHERE Prefix = $1 GROUP BY BuildingPrefix ORDER BY NumClasses desc LIMIT 3', [buildings], (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -31,7 +41,7 @@ const getUserRoutes = (email, day) => {
 const insertUser = (body) => {
     return new Promise(function (resolve, reject) {
         const { email, password } = body
-        pool.query('INSERT INTO Users VALUES ($1, $2, CURRENT_DATE()) RETURNING *', [email, password], (error, results) => {
+        pool.query('INSERT INTO users VALUES ($1, $2, CURRENT_DATE()) RETURNING *', [email, password], (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -42,7 +52,7 @@ const insertUser = (body) => {
 const insertClasses = (body) => {
     return new Promise(function (resolve, reject) {
         const { day, email, building, order } = body
-        pool.query('INSERT INTO Classes VALUES ($1, $2, $3, $4) RETURNING *', [day, email, building, order], (error, results) => {
+        pool.query('INSERT INTO classes VALUES ($1, $2, $3, $4) RETURNING *', [day, email, building, order], (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -54,7 +64,7 @@ const insertBuilding = (body) => {
     const { building, latitude, longitude } = body
     return new Promise(function (resolve, reject) {
 
-        pool.query('IF NOT EXISTS (SELECT * FROM Building WHERE prefix = $1) INSERT INTO Building VALUES ($1, $2, $3) RETURNING *', [building, latitude, longitude], (error, results) => {
+        pool.query('IF NOT EXISTS (SELECT * FROM building WHERE prefix = $1) INSERT INTO building VALUES ($1, $2, $3) RETURNING *', [building, latitude, longitude], (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -65,7 +75,7 @@ const insertBuilding = (body) => {
 const insertFeedback = (body) => {
     return new Promise(function (resolve, reject) {
         const { email, feedbackText } = body
-        pool.query('INSERT INTO Feedback VALUES (%1, $2) RETURNING *', [email, feedbackText], (error, results) => {
+        pool.query('INSERT INTO feedback VALUES (%1, $2) RETURNING *', [email, feedbackText], (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -85,7 +95,7 @@ const deleteClasses = (email) => {
 }
 const deleteBuildings = (prefix) => {
     return new Promise(function (resolve, reject) {
-        pool.query('DELETE FROM Buildings WHERE prefix = $1', [prefix], (error, results) => {
+        pool.query('DELETE FROM buildings WHERE prefix = $1', [prefix], (error, results) => {
             if (error) {
                 reject(error)
             }
@@ -96,7 +106,7 @@ const deleteBuildings = (prefix) => {
 const deleteOldUsers = () => { /*  Not Finished on any file  */
     return new Promise(function (resolve, reject) {
         const email = parseInt(request.params.email)
-        pool.query('DELETE FROM Users WHERE Age(SignUpDate) >= 5', [email], (error, results) => {
+        pool.query('DELETE FROM users WHERE Age(SignUpDate) >= 5', [email], (error, results) => {
             if (error) {
                 reject(error)
             }
