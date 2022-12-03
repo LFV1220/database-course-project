@@ -80,7 +80,7 @@ export function insertFeedback(email, feedbackText) {
     })
 }
 
-export function deleteClasses(email) {
+export function deleteClasses(email, day) {
   fetch(`http://localhost:3001/classes/${email}/${day}`, {
     method: 'DELETE',
   })
