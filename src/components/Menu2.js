@@ -13,7 +13,7 @@ const Menu2 = ({ setBuildingsList }) => {
       setBuildingsList([...formCount]);
       
       for(let i = 0; i < formCount.length; ++i) {
-        deleteClasses('joshua135@usf.edu', i + 1);
+        deleteClasses('joshua135@usf.edu', value);
         insertClasses(value, 'joshua135@usf.edu', formCount[i], i + 1);
       }
     }
