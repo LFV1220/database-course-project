@@ -7,8 +7,8 @@ const HomePage = () => {
 
     return (
         <div className='flex main-container'>
-            <Menu2 setBuildingsList={ setBuildingsList } />
-            <UsfMap2 buildingsList={ buildingsList } />
+            <Menu2 buildingsList={buildingsList} setBuildingsList={setBuildingsList} />
+            <UsfMap2 buildingsList={buildingsList} />
         </div>
     )
 }

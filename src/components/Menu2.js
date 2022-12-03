@@ -3,7 +3,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 import { getUserRoutes } from '../dbutil';
 
-const Menu2 = ({ setBuildingsList }) => {
+const Menu2 = ({ buildingsList, setBuildingsList }) => {
     const [value, setValue] = useState('Day');
     const [formCount, setFormCount] = useState(['', '']);
 
@@ -68,6 +68,14 @@ const Menu2 = ({ setBuildingsList }) => {
                     <button className='form-button' onClick={() => removeForm()}>Remove</button>
                 </div>
 
+                <div>
+                    {value === "Day" ? null : (<div>
+                        <h2>Previously Saved Buildings on {value}</h2>
+                        {buildingsList.map((building) => {
+                            return <p>{building}</p>
+                        })}
+                    </div>)}
+                </div>
             </div>
         </div>
     )
