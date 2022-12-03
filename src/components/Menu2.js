@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
-import { getUserRoutes } from '../dbutil';
+import { deleteClasses, getUserRoutes, insertClasses } from '../dbutil';
 
 const Menu2 = ({ buildingsList, setBuildingsList }) => {
     const [value, setValue] = useState('Day');
@@ -9,7 +9,14 @@ const Menu2 = ({ buildingsList, setBuildingsList }) => {
 
     const handleValueInput = (e) => setValue(e);
 
-    const handleSave = () => setBuildingsList([...formCount]);
+    const handleSave = () => {
+      setBuildingsList([...formCount]);
+      
+      for(let i = 0; i < formCount.length; ++i) {
+        deleteClasses('joshua135@usf.edu', i + 1);
+        insertClasses(value, 'joshua135@usf.edu', formCount[i], i + 1);
+      }
+    }
 
     const addForm = () => setFormCount(formCount => [...formCount, '']);
 

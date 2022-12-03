@@ -92,9 +92,9 @@ const insertFeedback = (body) => {
         })
     })
 }
-const deleteClasses = (email) => {
+const deleteClasses = (email, day) => {
     return new Promise(function (resolve, reject) {
-        pool.query('DELETE FROM classes WHERE email = $1', [email], (error, results) => {
+        pool.query('DELETE FROM classes WHERE email = $1 and day = $2', [email, day], (error, results) => {
             if (error) {
                 reject(error)
             }
