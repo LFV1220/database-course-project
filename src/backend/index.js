@@ -86,8 +86,8 @@ app.post('/feedback', (req, res) => {
             res.status(500).send(error);
         })
 })
-app.delete('/classes/:email', (req, res) => {
-    queries.deleteClasses(req.params.email)
+app.delete('/classes/:email/:day', (req, res) => {
+    queries.deleteClasses(req.params.email, req.params.day)
         .then(response => {
             res.status(200).send(response);
         })
