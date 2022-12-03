@@ -33,7 +33,7 @@ function App() {
       <Routes>
         <Route path='/Login' element={<Login setSignedIn={setSignedIn} />} />
 
-        <Route exact path='/' element={<HomePage />} />
+        <Route exact path='/' element={<HomePage isSignedIn={isSignedIn} />} />
 
         <Route path='/Login' element={<Login setSignedIn={setSignedIn} />} />
 
