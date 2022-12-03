@@ -3,19 +3,19 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 import { deleteClasses, getUserRoutes, insertClasses } from '../dbutil';
 
-const Menu2 = ({ setBuildingsList }) => {
+const Menu2 = ({ isSignedIn, buildingsList, setBuildingsList }) => {
     const [value, setValue] = useState('Day');
     const [formCount, setFormCount] = useState(['', '']);
 
     const handleValueInput = (e) => setValue(e);
 
     const handleSave = () => {
-      setBuildingsList([...formCount]);
-      
-      for(let i = 0; i < formCount.length; ++i) {
-        deleteClasses('joshua135@usf.edu', i + 1);
-        insertClasses(value, 'joshua135@usf.edu', formCount[i], i + 1);
-      }
+        setBuildingsList([...formCount]);
+
+        for (let i = 0; i < formCount.length; ++i) {
+            deleteClasses('joshua135@usf.edu', i + 1);
+            insertClasses(value, 'joshua135@usf.edu', formCount[i], i + 1);
+        }
     }
 
     const addForm = () => setFormCount(formCount => [...formCount, '']);
@@ -75,6 +75,16 @@ const Menu2 = ({ setBuildingsList }) => {
                     <button className='form-button' onClick={() => removeForm()}>Remove</button>
                 </div>
 
+                <div>
+                    {isSignedIn && value !== "Day" ? (<div>
+                        <h1></h1>
+                        <h1></h1>
+                        <h2 padding="45px">Saved Buildings on {value}:</h2>
+                        {buildingsList.map((building) => {
+                            return <p>{getUserRoutes('joshua135@usf.edu', value)}</p>
+                        })}
+                    </div>) : null}
+                </div>
             </div>
         </div>
     )
