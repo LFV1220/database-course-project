@@ -10,21 +10,12 @@ const Menu2 = ({ isSignedIn, buildingsList, setBuildingsList }) => {
     const handleValueInput = (e) => setValue(e);
 
     const handleSave = () => {
-<<<<<<< HEAD
       setBuildingsList([...formCount]);
       
       for(let i = 0; i < formCount.length; ++i) {
         deleteClasses('joshua135@usf.edu', value);
         insertClasses(value, 'joshua135@usf.edu', formCount[i], i + 1);
       }
-=======
-        setBuildingsList([...formCount]);
-
-        for (let i = 0; i < formCount.length; ++i) {
-            deleteClasses('joshua135@usf.edu', i + 1);
-            insertClasses(value, 'joshua135@usf.edu', formCount[i], i + 1);
-        }
->>>>>>> 250d4452cee15381f95b48e1cf9c735047c781f2
     }
 
     const addForm = () => setFormCount(formCount => [...formCount, '']);
